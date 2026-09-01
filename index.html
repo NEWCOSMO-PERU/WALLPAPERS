@@ -45,7 +45,7 @@
             pointer-events: none;
         }
 
-        /* Header Estilo App Store / Tienda Pro */
+        /* Header Estilo Tienda Pro */
         header {
             text-align: center;
             padding: 50px 20px 30px;
@@ -92,7 +92,7 @@
             display: grid;
             grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
             gap: 22px;
-            padding: 20px 5% 50px;
+            padding: 20px 5% 30px;
             max-width: 1300px;
             margin: 0 auto;
         }
@@ -170,6 +170,44 @@
             font-weight: 600;
         }
 
+        /* Controles de Paginación */
+        .pagination {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 15px;
+            padding: 10px 20px 40px;
+        }
+
+        .btn-page {
+            background: var(--bg-card);
+            color: var(--text-main);
+            border: 1px solid var(--border-card);
+            padding: 10px 20px;
+            border-radius: 12px;
+            font-weight: 600;
+            font-size: 0.9rem;
+            cursor: pointer;
+            transition: background 0.2s, border-color 0.2s;
+        }
+
+        .btn-page:hover:not(:disabled) {
+            background: var(--bg-card-hover);
+            border-color: var(--accent);
+            color: var(--accent);
+        }
+
+        .btn-page:disabled {
+            opacity: 0.4;
+            cursor: not-allowed;
+        }
+
+        .page-indicator {
+            font-size: 0.9rem;
+            color: var(--text-muted);
+            font-weight: 600;
+        }
+
         /* Checkout Pro Section */
         .checkout-section {
             max-width: 520px;
@@ -235,38 +273,6 @@
         }
         .qr-wrapper img { width: 180px; height: 180px; display: block; }
 
-        /* Copiar número Yape con un toque */
-        .yape-clipboard {
-            background: rgba(255, 255, 255, 0.04);
-            border: 1px solid rgba(255, 255, 255, 0.08);
-            padding: 10px 14px;
-            border-radius: 12px;
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            margin-bottom: 20px;
-            font-size: 0.9rem;
-        }
-
-        .yape-number {
-            font-weight: 700;
-            color: #d1a3ff;
-            letter-spacing: 1px;
-        }
-
-        .btn-copy {
-            background: rgba(122, 31, 215, 0.2);
-            color: #d1a3ff;
-            border: 1px solid rgba(122, 31, 215, 0.4);
-            padding: 6px 12px;
-            border-radius: 8px;
-            font-size: 0.75rem;
-            font-weight: 700;
-            cursor: pointer;
-            transition: background 0.2s;
-        }
-        .btn-copy:hover { background: rgba(122, 31, 215, 0.4); }
-
         .instructions {
             font-size: 0.85rem;
             color: #cbd5e1;
@@ -299,7 +305,7 @@
             box-shadow: 0 4px 15px rgba(37, 211, 102, 0.4);
         }
 
-        /* Sección de Preguntas Frecuentes (FAQ) */
+        /* FAQ Profesional */
         .faq-section {
             max-width: 700px;
             margin: 0 auto 80px;
@@ -340,7 +346,7 @@
         }
 
         @media (max-width: 480px) {
-            .grid { padding: 15px 3% 30px; gap: 14px; }
+            .grid { padding: 15px 3% 20px; gap: 14px; }
             .checkout-box { padding: 30px 18px; }
         }
     </style>
@@ -353,8 +359,15 @@
         <p>Dale una estética brutal a tu celular con visuales fluidos en máxima resolución optimizados para cualquier pantalla.</p>
     </header>
 
-    <!-- Galería Dinámica -->
+    <!-- Galería Dinámica por Páginas -->
     <div id="gridContainer" class="grid"></div>
+
+    <!-- Controles de Paginación -->
+    <div class="pagination">
+        <button id="prevBtn" class="btn-page" onclick="cambiarPagina(-1)">← Anterior</button>
+        <span id="pageIndicator" class="page-indicator">Página 1 de 1</span>
+        <button id="nextBtn" class="btn-page" onclick="cambiarPagina(1)">Siguiente →</button>
+    </div>
 
     <!-- Sección de Checkout Único -->
     <section class="checkout-section">
@@ -371,17 +384,11 @@
                 <img src="assets/tu_qr_yape.png" alt="QR Yape">
             </div>
 
-            <!-- Copiar número rápido -->
-            <div class="yape-clipboard">
-                <span>Yape: <strong id="yapeNumText" class="yape-number">999 999 999</strong></span>
-                <button class="btn-copy" onclick="copiarNumero()">Copiar</button>
-            </div>
-
             <div class="instructions">
                 <strong>¿Cómo recibir tus fondos?</strong><br>
-                1. Escanea el QR o yapea al número indicado.<br>
+                1. Escanea el QR y realiza tu pago único de S/ 10.00.<br>
                 2. Toca el botón verde para enviar tu captura a WhatsApp.<br>
-                3. Recibe el enlace directo de descarga en segundos.
+                3. Recibe el enlace directo de descarga de toda la carpeta.
             </div>
             
             <a href="#" id="whatsappLink" class="btn-wa" target="_blank">
@@ -404,62 +411,83 @@
     </section>
 
     <script>
-        // Cambia a 20 cuando cargues todos tus archivos en assets
-        const totalFondos = 20; 
-        const numeroYape = "51999999999"; // Cambia por tu número real con código de país (Ej: 51912345678)
+        // CONFIGURACIÓN DE LOS FONDOS Y PAGINACIÓN
+        const totalFondos = 12; // Cambia este número al total real de fondos que tengas (ej. 20)
+        const porPagina = 4;    // Cantidad de fondos que se muestran por página
+        let paginaActual = 1;
 
-        const fondos = Array.from({ length: totalFondos }, (_, i) => ({
+        const numeroYape = "51999999999"; // Cambia por tu número real con código de país
+
+        // Genera el array completo de fondos automáticamente
+        const todosLosFondos = Array.from({ length: totalFondos }, (_, i) => ({
             id: i + 1,
             nombre: `Wallpaper 0${i + 1}`,
             videoSrc: `assets/fondo${i + 1}.mp4`
         }));
 
-        const gridContainer = document.getElementById('gridContainer');
+        function renderizarPagina() {
+            const gridContainer = document.getElementById('gridContainer');
+            gridContainer.innerHTML = '';
 
-        fondos.forEach(fondo => {
-            const card = document.createElement('div');
-            card.className = 'card';
-            card.innerHTML = `
-                <div class="video-container">
-                    <video class="preview-video" autoplay loop muted playsinline data-src="${fondo.videoSrc}"></video>
-                </div>
-                <div class="card-info">
-                    <h3>${fondo.nombre}</h3>
-                    <span class="quality-badge">4K 60FPS</span>
-                </div>
-            `;
-            gridContainer.appendChild(card);
-        });
+            const inicio = (paginaActual - 1) * porPagina;
+            const fin = inicio + porPagina;
+            const fondosPagina = todosLosFondos.slice(inicio, fin);
 
-        // Intersection Observer para optimizar la carga de videos en segundo plano
-        const videos = document.querySelectorAll('.preview-video');
-        const videoObserver = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                const video = entry.target;
-                if (entry.isIntersecting) {
-                    if (!video.src) video.src = video.getAttribute('data-src');
-                    video.play().then(() => video.classList.add('loaded')).catch(e => {});
-                } else {
-                    video.pause();
-                }
+            fondosPagina.forEach(fondo => {
+                const card = document.createElement('div');
+                card.className = 'card';
+                card.innerHTML = `
+                    <div class="video-container">
+                        <video class="preview-video" autoplay loop muted playsinline data-src="${fondo.videoSrc}"></video>
+                    </div>
+                    <div class="card-info">
+                        <h3>${fondo.nombre}</h3>
+                        <span class="quality-badge">4K 60FPS</span>
+                    </div>
+                `;
+                gridContainer.appendChild(card);
             });
-        }, { rootMargin: "0px 0px 150px 0px" });
 
-        videos.forEach(video => videoObserver.observe(video));
+            // Activar observación de video para los elementos de esta página
+            const videos = gridContainer.querySelectorAll('.preview-video');
+            const videoObserver = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    const video = entry.target;
+                    if (entry.isIntersecting) {
+                        if (!video.src) video.src = video.getAttribute('data-src');
+                        video.play().then(() => video.classList.add('loaded')).catch(e => {});
+                    } else {
+                        video.pause();
+                    }
+                });
+            }, { rootMargin: "0px 0px 150px 0px" });
+
+            videos.forEach(video => videoObserver.observe(video));
+
+            // Actualizar controles de paginación
+            const totalPaginas = Math.ceil(totalFondos / porPagina);
+            document.getElementById('pageIndicator').innerText = `Página ${paginaActual} de ${totalPaginas}`;
+            document.getElementById('prevBtn').disabled = paginaActual === 1;
+            document.getElementById('nextBtn').disabled = paginaActual === totalPaginas;
+        }
+
+        function cambiarPagina(direccion) {
+            const totalPaginas = Math.ceil(totalFondos / porPagina);
+            paginaActual += direccion;
+            if (paginaActual < 1) paginaActual = 1;
+            if (paginaActual > totalPaginas) paginaActual = totalPaginas;
+            
+            renderizarPagina();
+            window.scrollTo({ top: 0, behavior: 'smooth' }); // Sube la pantalla suavemente al cambiar de página
+        }
+
+        // Inicializar la primera página al cargar
+        renderizarPagina();
 
         // Enlace automático de WhatsApp
         const waLink = document.getElementById('whatsappLink');
         const mensaje = encodeURIComponent(`Hola, acabo de realizar el pago único de S/ 10.00 por la colección completa de wallpapers. Te comparto mi comprobante.`);
         waLink.href = `https://wa.me/${numeroYape}?text=${mensaje}`;
-
-        // Función para copiar número Yape al portapapeles
-        function copiarNumero() {
-            const numPuro = numeroYape.replace("51", ""); // Remueve código de país para mostrar limpio si deseas
-            navigator.clipboard.writeText(numPuro);
-            const btn = document.querySelector('.btn-copy');
-            btn.innerText = "¡Copiado!";
-            setTimeout(() => btn.innerText = "Copiar", 2000);
-        }
     </script>
 </body>
 </html>
