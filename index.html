@@ -5,7 +5,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Fondos Animados Premium</title>
     <style>
-        /* Variables y Reset */
         :root {
             --bg-color: #0a0a0c;
             --card-bg: #151518;
@@ -23,9 +22,8 @@
             text-align: center;
         }
 
-        /* Encabezado Glassmorphism */
         header {
-            background: rgba(10, 10, 12, 0.8);
+            background: rgba(10, 10, 12, 0.9);
             backdrop-filter: blur(10px);
             padding: 25px 20px;
             position: sticky;
@@ -33,32 +31,30 @@
             z-index: 100;
             border-bottom: 1px solid rgba(255, 255, 255, 0.1);
         }
-        h1 { font-size: 2rem; letter-spacing: -0.5px; margin-bottom: 5px; }
-        header p { color: var(--accent); font-weight: 500; font-size: 0.9rem; }
+        h1 { font-size: 1.8rem; letter-spacing: -0.5px; margin-bottom: 5px; }
+        header p { color: var(--accent); font-weight: 500; font-size: 0.85rem; }
 
-        /* Cuadrícula Responsive */
         .grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-            gap: 25px;
-            padding: 40px 5%;
-            max-width: 1400px;
+            grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+            gap: 20px;
+            padding: 30px 4%;
+            max-width: 1200px;
             margin: 0 auto;
         }
 
-        /* Tarjetas */
         .card {
             background: var(--card-bg);
-            border-radius: 16px;
-            padding: 15px;
+            border-radius: 14px;
+            padding: 12px;
             border: 1px solid rgba(255, 255, 255, 0.05);
-            transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275), box-shadow 0.3s;
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
             display: flex;
             flex-direction: column;
         }
         .card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 10px 20px rgba(0, 213, 163, 0.1);
+            transform: translateY(-4px);
+            box-shadow: 0 8px 20px rgba(0, 213, 163, 0.15);
             border-color: rgba(0, 213, 163, 0.3);
         }
         
@@ -67,30 +63,44 @@
             aspect-ratio: 9 / 16;
             border-radius: 10px;
             overflow: hidden;
-            background: #000;
+            background: #111;
             position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
         }
+        
+        /* Texto de carga por si el video tarda en entrar */
+        .video-container::before {
+            content: "Cargando...";
+            position: absolute;
+            color: var(--text-muted);
+            font-size: 0.75rem;
+            z-index: 1;
+        }
+
         .preview-video {
             width: 100%;
             height: 100%;
             object-fit: cover;
+            position: relative;
+            z-index: 2;
             opacity: 0;
-            transition: opacity 0.5s ease;
+            transition: opacity 0.4s ease;
         }
         .preview-video.loaded { opacity: 1; }
 
-        .card h3 { font-size: 1.1rem; margin: 15px 0 5px; text-align: left; }
-        .card p.price { color: var(--text-muted); text-align: left; margin-bottom: 15px; font-size: 0.9rem; }
+        .card h3 { font-size: 1rem; margin: 12px 0 4px; text-align: left; }
+        .card p.price { color: var(--text-muted); text-align: left; margin-bottom: 12px; font-size: 0.85rem; }
         
-        /* Botones */
         .btn {
             background: var(--accent);
             color: #000;
             border: none;
-            padding: 14px;
+            padding: 12px;
             border-radius: 8px;
             font-weight: 700;
-            font-size: 1rem;
+            font-size: 0.95rem;
             cursor: pointer;
             transition: background 0.2s;
             margin-top: auto;
@@ -103,7 +113,7 @@
             position: fixed;
             top: 0; left: 0;
             width: 100%; height: 100%;
-            background: rgba(0, 0, 0, 0.9);
+            background: rgba(0, 0, 0, 0.85);
             backdrop-filter: blur(5px);
             justify-content: center;
             align-items: center;
@@ -115,46 +125,47 @@
         
         .modal-content {
             background: var(--card-bg);
-            padding: 35px 25px;
+            padding: 30px 20px;
             border-radius: 20px;
             width: 90%;
-            max-width: 380px;
+            max-width: 350px;
             border: 1px solid rgba(255, 255, 255, 0.1);
-            position: relative;
             transform: scale(0.9);
             transition: transform 0.3s ease;
         }
         .modal.active .modal-content { transform: scale(1); }
 
-        .modal-header { color: #6e0f6e; font-size: 1.5rem; margin-bottom: 10px; font-weight: bold; }
+        .modal-header { color: #8e2de2; font-size: 1.4rem; margin-bottom: 8px; font-weight: bold; }
         .qr-wrapper {
             background: #fff;
-            padding: 15px;
+            padding: 12px;
             border-radius: 12px;
-            margin: 20px auto;
+            margin: 15px auto;
             width: fit-content;
         }
-        .qr-wrapper img { width: 220px; height: 220px; display: block; }
+        .qr-wrapper img { width: 190px; height: 190px; display: block; }
         
         .btn-wa {
             background: #25D366;
             color: white;
             text-decoration: none;
             display: block;
-            padding: 14px;
+            padding: 12px;
             border-radius: 8px;
             font-weight: bold;
+            font-size: 0.95rem;
             margin-bottom: 10px;
         }
         .btn-wa:hover { background: #20bd5a; }
         .btn-close {
             background: transparent;
             color: var(--text-muted);
-            border: 1px solid var(--text-muted);
-            padding: 12px;
+            border: 1px solid rgba(255,255,255,0.1);
+            padding: 10px;
             width: 100%;
             border-radius: 8px;
             cursor: pointer;
+            font-size: 0.9rem;
         }
         .btn-close:hover { background: rgba(255,255,255,0.05); color: #fff; }
     </style>
@@ -162,8 +173,8 @@
 <body>
 
     <header>
-        <h1>Fondos Premium</h1>
-        <p>Catálogo Exclusivo en Alta Resolución</p>
+        <h1>Fondos Animados</h1>
+        <p>Catálogo Exclusivo para Celular</p>
     </header>
 
     <div id="gridContainer" class="grid"></div>
@@ -171,14 +182,14 @@
     <div id="paymentModal" class="modal">
         <div class="modal-content">
             <div class="modal-header">Yape</div>
-            <p>Fondo: <strong id="fondoName" style="color: var(--accent);"></strong></p>
+            <p style="font-size: 0.9rem;">Fondo: <strong id="fondoName" style="color: var(--accent);"></strong></p>
             
             <div class="qr-wrapper">
                 <img src="assets/tu_qr_yape.png" alt="QR Yape">
             </div>
 
-            <p style="font-size: 0.85rem; color: var(--text-muted); margin-bottom: 20px;">
-                Envía la captura de tu pago para recibir inmediatamente el enlace de descarga directa en Mega.
+            <p style="font-size: 0.8rem; color: var(--text-muted); margin-bottom: 15px;">
+                Envía tu captura de pago por WhatsApp para recibir el enlace de descarga en Mega.
             </p>
             
             <a href="#" id="whatsappLink" class="btn-wa" target="_blank">Enviar captura por WhatsApp</a>
@@ -187,73 +198,68 @@
     </div>
 
     <script>
-        // 1. Base de datos de los 20 fondos (Array de Objetos)
-        // Esto permite escalar la web fácilmente sin tocar el HTML
-        const fondos = Array.from({ length: 20 }, (_, i) => ({
+        // CAMBIA EL NÚMERO "1" POR "20" CUANDO TENGAS TODOS TUS VIDEOS SUBIDOS
+        const totalFondos = 1; 
+
+        const fondos = Array.from({ length: totalFondos }, (_, i) => ({
             id: i + 1,
             nombre: `Wallpaper Pro V${i + 1}`,
             precio: "S/ 3.00",
-            videoSrc: `assets/fondo${i + 1}.mp4` // Asegúrate de tener fondo1.mp4 hasta fondo20.mp4
+            videoSrc: `assets/fondo${i + 1}.mp4`
         }));
 
         const gridContainer = document.getElementById('gridContainer');
 
-        // 2. Renderizar tarjetas en el DOM
         fondos.forEach(fondo => {
             const card = document.createElement('div');
             card.className = 'card';
             card.innerHTML = `
                 <div class="video-container">
-                    <video class="preview-video" loop muted playsinline data-src="${fondo.videoSrc}"></video>
+                    <video class="preview-video" loop muted playsinline preload="none" data-src="${fondo.videoSrc}"></video>
                 </div>
                 <h3>${fondo.nombre}</h3>
                 <p class="price">${fondo.precio}</p>
-                <button class="btn" onclick="openModal('${fondo.nombre}')">Comprar Ahora</button>
+                <button class="btn" onclick="openModal('${fondo.nombre}')">Comprar</button>
             `;
             gridContainer.appendChild(card);
         });
 
-        // 3. Lazy Loading & Intersection Observer (NIVEL PRO)
-        // Reproduce los videos SOLO cuando entran en la pantalla del usuario
         const videos = document.querySelectorAll('.preview-video');
         
-        const videoObserver = new IntersectionObserver((entries, observer) => {
+        const videoObserver = new IntersectionObserver((entries) => {
             entries.forEach(entry => {
                 const video = entry.target;
                 if (entry.isIntersecting) {
-                    // Carga el video y lo reproduce cuando es visible
                     if (!video.src) {
                         video.src = video.getAttribute('data-src');
-                        video.classList.add('loaded');
                     }
-                    video.play().catch(e => console.log("Autoplay prevenido:", e));
+                    video.play().then(() => {
+                        video.classList.add('loaded');
+                    }).catch(e => console.log("Espera de reproducción:", e));
                 } else {
-                    // Pausa el video cuando sale de la pantalla para ahorrar RAM y batería
                     video.pause();
                 }
             });
-        }, { rootMargin: "0px 0px 200px 0px" });
+        }, { rootMargin: "0px 0px 150px 0px" });
 
         videos.forEach(video => videoObserver.observe(video));
 
-        // 4. Lógica del Modal y WhatsApp
         const modal = document.getElementById('paymentModal');
-        const waNumber = "51999999999"; // TU NÚMERO AQUÍ
+        const waNumber = "51999999999"; // REEMPLAZA CON TU NÚMERO DE WHATSAPP
 
         function openModal(nombreFondo) {
             document.getElementById('fondoName').innerText = nombreFondo;
             const waLink = document.getElementById('whatsappLink');
             const mensaje = encodeURIComponent(`Hola, acabo de pagar por el ${nombreFondo}. Te envío mi captura para recibir el enlace de Mega.`);
             waLink.href = `https://wa.me/${waNumber}?text=${mensaje}`;
-            
             modal.classList.add('active');
         }
 
         function closeModal() {
+            modal.classList.0 ? '' : modal.classList.remove('active'); // compatible
             modal.classList.remove('active');
         }
 
-        // Cerrar modal al hacer clic fuera del contenido
         modal.addEventListener('click', (e) => {
             if (e.target === modal) closeModal();
         });
