@@ -1,122 +1,171 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>MotionWall — Fondos en Movimiento</title>
-  <meta name="description" content="Fondos en movimiento para celular. Visualiza gratis y descarga después de realizar tu pago por Yape.">
-  <link rel="stylesheet" href="style.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fondos Animados Premium</title>
+    <style>
+        /* Estilos Generales y Modo Oscuro */
+        body { 
+            background-color: #0d0d0d; 
+            color: #ffffff; 
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; 
+            text-align: center; 
+            margin: 0;
+            padding: 0;
+        }
+        header {
+            background-color: #1a1a1a;
+            padding: 20px;
+            border-bottom: 2px solid #00d5a3;
+        }
+        h1 { margin: 0; font-size: 1.8rem; }
+        
+        /* Cuadrícula de Fondos */
+        .grid { 
+            display: flex; 
+            gap: 25px; 
+            justify-content: center; 
+            flex-wrap: wrap; 
+            padding: 40px 20px; 
+        }
+        .card { 
+            background: #1a1a1a; 
+            padding: 15px; 
+            border-radius: 12px; 
+            width: 260px; 
+            box-shadow: 0 4px 10px rgba(0,0,0,0.5);
+            transition: transform 0.2s;
+        }
+        .card:hover { transform: scale(1.02); }
+        .preview-video { 
+            width: 100%; 
+            border-radius: 8px; 
+            background: #000;
+        }
+        .card h3 { font-size: 1.1rem; margin: 15px 0 10px 0; }
+        
+        /* Botones */
+        .btn { 
+            background: #00d5a3; 
+            color: #000; 
+            border: none; 
+            padding: 12px 20px; 
+            cursor: pointer; 
+            border-radius: 6px; 
+            font-weight: bold; 
+            width: 100%; 
+            font-size: 1rem;
+            transition: background 0.3s;
+        }
+        .btn:hover { background: #00b389; }
+        .btn-wa { background: #25D366; color: white; margin-top: 15px; display: block; text-decoration: none;}
+        .btn-wa:hover { background: #20bd5a; }
+
+        /* Modal (Ventana emergente de pago) */
+        .modal { 
+            display: none; 
+            position: fixed; 
+            top: 0; left: 0; 
+            width: 100%; height: 100%; 
+            background: rgba(0,0,0,0.85); 
+            justify-content: center; 
+            align-items: center; 
+            z-index: 1000;
+        }
+        .modal-content { 
+            background: #1a1a1a; 
+            padding: 30px; 
+            border-radius: 12px; 
+            text-align: center; 
+            width: 90%; 
+            max-width: 350px; 
+            border: 1px solid #333;
+        }
+        .qr-container { 
+            margin: 20px auto; 
+            background: #fff; 
+            padding: 10px; 
+            border-radius: 8px; 
+            display: inline-block;
+        }
+        .qr-container img { width: 200px; height: 200px; object-fit: contain; }
+        .close-btn { 
+            background: #ff4757; 
+            color: white; 
+            border: none; 
+            padding: 10px; 
+            cursor: pointer; 
+            border-radius: 6px; 
+            width: 100%; 
+            margin-top: 10px; 
+            font-weight: bold;
+        }
+        .close-btn:hover { background: #ff2e43; }
+    </style>
 </head>
 <body>
-  <header class="topbar">
-    <div class="brand">MOTION<span>WALL</span></div>
-    <a class="yape-mini" href="#como-comprar">💜 Paga con Yape</a>
-  </header>
 
-  <main>
-    <section class="hero">
-      <div>
-        <p class="eyebrow">WALLPAPERS PREMIUM</p>
-        <h1>Fondos que hacen<br><span>mover tu pantalla.</span></h1>
-        <p class="hero-copy">Mira cada fondo en movimiento y elige tu favorito. El archivo original se desbloquea después del pago.</p>
-        <a class="hero-btn" href="#catalogo">Ver catálogo ↓</a>
-      </div>
-    </section>
+    <header>
+        <h1>Fondos Animados Premium</h1>
+        <p>Lleva tu celular al siguiente nivel</p>
+    </header>
 
-    <section id="catalogo" class="catalogo">
-      <div class="section-head">
-        <div>
-          <p class="eyebrow">CATÁLOGO</p>
-          <h2>Elige tu fondo</h2>
+    <div class="grid">
+        <div class="card">
+            <video class="preview-video" autoplay loop muted playsinline>
+                <source src="assets/muestra_fondo1.mp4" type="video/mp4">
+            </video>
+            <h3>Galaxia Neón</h3>
+            <button class="btn" onclick="openModal('Galaxia Neón')">Comprar - S/ 3.00</button>
         </div>
-        <p class="hint">Vista previa · Descarga premium</p>
-      </div>
 
-      <div class="grid">
-        <!-- Duplica este article para agregar más fondos -->
-        <article class="card">
-          <div class="preview">
-            <video src="fondos/fondo-01.mp4" autoplay muted loop playsinline controlslist="nodownload"></video>
-            <div class="watermark">MOTIONWALL</div>
-          </div>
-          <div class="card-info">
-            <div>
-              <h3>Neon Purple</h3>
-              <p>1080 × 1920 · MP4</p>
-            </div>
-            <button class="buy-btn" data-title="Neon Purple" data-file="fondos/fondo-01.mp4">Comprar · S/ 5</button>
-          </div>
-        </article>
-
-        <article class="card">
-          <div class="preview">
-            <video src="fondos/fondo-02.mp4" autoplay muted loop playsinline controlslist="nodownload"></video>
-            <div class="watermark">MOTIONWALL</div>
-          </div>
-          <div class="card-info">
-            <div>
-              <h3>Galaxy Blue</h3>
-              <p>1080 × 1920 · MP4</p>
-            </div>
-            <button class="buy-btn" data-title="Galaxy Blue" data-file="fondos/fondo-02.mp4">Comprar · S/ 5</button>
-          </div>
-        </article>
-
-        <article class="card">
-          <div class="preview">
-            <video src="fondos/fondo-03.mp4" autoplay muted loop playsinline controlslist="nodownload"></video>
-            <div class="watermark">MOTIONWALL</div>
-          </div>
-          <div class="card-info">
-            <div>
-              <h3>Red Energy</h3>
-              <p>1080 × 1920 · MP4</p>
-            </div>
-            <button class="buy-btn" data-title="Red Energy" data-file="fondos/fondo-03.mp4">Comprar · S/ 5</button>
-          </div>
-        </article>
-      </div>
-    </section>
-
-    <section id="como-comprar" class="how">
-      <p class="eyebrow">COMPRA SIMPLE</p>
-      <h2>¿Cómo descargar?</h2>
-      <div class="steps">
-        <div><b>01</b><h3>Elige</h3><p>Selecciona el fondo que quieres.</p></div>
-        <div><b>02</b><h3>Paga</h3><p>Realiza el pago por Yape.</p></div>
-        <div><b>03</b><h3>Desbloquea</h3><p>Introduce el código de descarga que recibirás después de verificar tu pago.</p></div>
-      </div>
-    </section>
-  </main>
-
-  <footer>© 2026 MotionWall · Fondos en movimiento para celular</footer>
-
-  <div class="modal" id="modal" aria-hidden="true">
-    <div class="modal-box">
-      <button class="close" id="close">×</button>
-      <p class="eyebrow">COMPRA</p>
-      <h2 id="modalTitle">Fondo</h2>
-      <p class="price">Precio: <strong>S/ 5.00</strong></p>
-
-      <div class="yape-box">
-        <div class="qr-placeholder">QR<br>YAPE</div>
-        <div>
-          <p><strong>Yape</strong></p>
-          <p class="number">TU NÚMERO YAPE</p>
-          <p>Escanea el QR o usa el número de Yape. Luego conserva tu comprobante.</p>
+        <div class="card">
+            <video class="preview-video" autoplay loop muted playsinline>
+                <source src="assets/muestra_fondo2.mp4" type="video/mp4">
+            </video>
+            <h3>Cyberpunk City</h3>
+            <button class="btn" onclick="openModal('Cyberpunk City')">Comprar - S/ 3.00</button>
         </div>
-      </div>
-
-      <p class="security-note">Después de verificar el pago, recibirás un código de descarga.</p>
-
-      <label for="code">Código de descarga</label>
-      <input id="code" type="text" placeholder="Ej. MW-1234" autocomplete="off">
-      <button id="unlock" class="unlock">Desbloquear descarga</button>
-      <p id="message" class="message"></p>
-      <a id="download" class="download" href="#" download>⬇ Descargar fondo</a>
     </div>
-  </div>
 
-  <script src="script.js"></script>
+    <div id="paymentModal" class="modal">
+        <div class="modal-content">
+            <h2 style="color: #6e0f6e; margin-top: 0;">Pago con Yape</h2>
+            <p>Fondo seleccionado: <strong id="fondoName"></strong></p>
+            <p>1. Escanea el código QR desde tu app Yape.</p>
+            
+            <div class="qr-container">
+                <img src="assets/tu_qr_yape.png" alt="Código QR de Yape">
+            </div>
+
+            <p>2. Envía la captura del pago para recibir tu enlace de descarga en máxima calidad.</p>
+            
+            <a href="https://wa.me/51999999999?text=Hola,%20acabo%20de%20pagar%20por%20el%20fondo:%20" id="whatsappLink" class="btn btn-wa" target="_blank">Enviar captura por WhatsApp</a>
+            <button class="close-btn" onclick="closeModal()">Cerrar</button>
+        </div>
+    </div>
+
+    <script>
+        function openModal(nombreFondo) {
+            // Actualizar el nombre del fondo en el modal
+            document.getElementById('fondoName').innerText = nombreFondo;
+            
+            // Personalizar el mensaje de WhatsApp según el fondo elegido
+            const waLink = document.getElementById('whatsappLink');
+            const baseUrl = "https://wa.me/51999999999?text="; // Recuerda cambiar el número aquí también
+            const mensaje = encodeURIComponent("Hola, acabo de pagar por el fondo animado: " + nombreFondo);
+            waLink.href = baseUrl + mensaje;
+
+            // Mostrar el modal
+            document.getElementById('paymentModal').style.display = 'flex';
+        }
+
+        function closeModal() {
+            // Ocultar el modal
+            document.getElementById('paymentModal').style.display = 'none';
+        }
+    </script>
+
 </body>
 </html>
