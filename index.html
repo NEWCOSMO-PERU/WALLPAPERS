@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Wallpapers Pro - Fondos Animados en Movimiento</title>
+    <title>Wallpapers Pro - Colección Completa en Movimiento</title>
     <!-- Google Fonts Outfit -->
     <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;600;700;800&display=swap" rel="stylesheet">
     <style>
@@ -79,38 +79,29 @@
             font-size: 1rem;
         }
 
-        /* Cuadrícula de Tarjetas */
+        /* Cuadrícula de Demostración de Videos */
         .grid {
             display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
-            gap: 25px;
-            padding: 30px 5% 60px;
+            grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+            gap: 20px;
+            padding: 20px 5% 40px;
             max-width: 1300px;
             margin: 0 auto;
         }
 
         .card {
             background: var(--bg-card);
-            border-radius: 20px;
-            padding: 14px;
+            border-radius: 16px;
+            padding: 12px;
             border: 1px solid var(--border-card);
             position: relative;
-            transition: transform 0.3s cubic-bezier(0.2, 0.8, 0.2, 1), box-shadow 0.3s cubic-bezier(0.2, 0.8, 0.2, 1), border-color 0.3s;
-            display: flex;
-            flex-direction: column;
-        }
-
-        .card:hover {
-            transform: translateY(-8px);
-            box-shadow: 0 12px 30px var(--accent-glow);
-            border-color: rgba(0, 255, 204, 0.4);
         }
 
         /* Contenedor de video (Formato celular 9:16) */
         .video-container {
             width: 100%;
             aspect-ratio: 9 / 16;
-            border-radius: 14px;
+            border-radius: 12px;
             overflow: hidden;
             background: #000;
             position: relative;
@@ -140,93 +131,65 @@
         }
         .preview-video.loaded { opacity: 1; }
 
-        /* Información del Fondo */
         .card-info {
             display: flex;
             justify-content: space-between;
             align-items: center;
-            margin: 15px 4px 12px;
+            margin-top: 10px;
         }
 
         .card h3 { 
-            font-size: 1.05rem; 
+            font-size: 0.95rem; 
             font-weight: 600;
             color: #fff;
         }
 
-        .price-tag {
-            background: rgba(255, 255, 255, 0.05);
-            padding: 4px 10px;
-            border-radius: 8px;
-            font-size: 0.85rem;
-            font-weight: 700;
-            color: var(--accent);
-        }
-
-        /* Botón de Compra Moderno */
-        .btn-buy {
-            background: linear-gradient(135deg, #00ffcc 0%, #00b389 100%);
-            color: #000;
-            border: none;
-            padding: 12px;
-            border-radius: 12px;
-            font-weight: 700;
-            font-size: 0.95rem;
-            cursor: pointer;
-            transition: opacity 0.2s, transform 0.2s;
-            margin-top: auto;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 8px;
-        }
-
-        .btn-buy:hover {
-            opacity: 0.9;
-            transform: scale(0.98);
-        }
-
-        /* Modal / Popup de Yape Rediseñado */
-        .modal {
-            display: none;
-            position: fixed;
-            top: 0; left: 0;
-            width: 100%; height: 100%;
-            background: rgba(5, 5, 8, 0.85);
-            backdrop-filter: blur(10px);
-            justify-content: center;
-            align-items: center;
-            z-index: 1000;
-            opacity: 0;
-            transition: opacity 0.3s ease;
-        }
-        .modal.active { display: flex; opacity: 1; }
-
-        .modal-content {
-            background: #15151c;
-            padding: 35px 25px;
-            border-radius: 24px;
-            width: 90%;
-            max-width: 380px;
-            border: 1px solid rgba(122, 31, 215, 0.3);
-            box-shadow: 0 20px 50px rgba(0,0,0,0.8);
-            transform: scale(0.9);
-            transition: transform 0.3s cubic-bezier(0.2, 0.8, 0.2, 1);
-            text-align: center;
-        }
-        .modal.active .modal-content { transform: scale(1); }
-
-        .modal-header {
-            font-size: 1.6rem;
-            font-weight: 800;
-            color: #d1a3ff;
-            margin-bottom: 5px;
-        }
-
-        .modal-subtitle {
-            font-size: 0.85rem;
+        .preview-tag {
+            font-size: 0.75rem;
             color: var(--text-muted);
+            background: rgba(255, 255, 255, 0.05);
+            padding: 3px 8px;
+            border-radius: 6px;
+        }
+
+        /* Sección de Compra Final / Checkout */
+        .checkout-section {
+            max-width: 500px;
+            margin: 20px auto 80px;
+            padding: 0 20px;
+        }
+
+        .checkout-box {
+            background: linear-gradient(145deg, #121218 0%, #1a1a24 100%);
+            border: 2px solid rgba(0, 255, 204, 0.3);
+            border-radius: 24px;
+            padding: 35px 25px;
+            text-align: center;
+            box-shadow: 0 20px 50px var(--accent-glow);
+        }
+
+        .checkout-title {
+            font-size: 1.8rem;
+            font-weight: 800;
+            color: #fff;
+            margin-bottom: 8px;
+        }
+
+        .checkout-subtitle {
+            font-size: 0.95rem;
+            color: var(--text-muted);
+            margin-bottom: 25px;
+        }
+
+        .price-banner {
+            font-size: 2.2rem;
+            font-weight: 800;
+            color: var(--accent);
             margin-bottom: 20px;
+            background: rgba(0, 255, 204, 0.05);
+            padding: 10px;
+            border-radius: 14px;
+            border: 1px dashed rgba(0, 255, 204, 0.3);
         }
 
         .qr-wrapper {
@@ -243,14 +206,14 @@
             font-size: 0.85rem;
             color: #cbd5e1;
             background: rgba(255, 255, 255, 0.03);
-            padding: 12px;
+            padding: 14px;
             border-radius: 12px;
-            margin-bottom: 20px;
+            margin-bottom: 25px;
             border: 1px solid rgba(255, 255, 255, 0.05);
             text-align: left;
         }
 
-        /* Botón de WhatsApp */
+        /* Botón de WhatsApp Principal */
         .btn-wa {
             background: #25D366;
             color: white;
@@ -258,80 +221,69 @@
             display: flex;
             align-items: center;
             justify-content: center;
-            gap: 8px;
-            padding: 14px;
-            border-radius: 12px;
+            gap: 10px;
+            padding: 16px;
+            border-radius: 14px;
             font-weight: 700;
-            font-size: 0.95rem;
-            margin-bottom: 10px;
-            transition: background 0.2s;
+            font-size: 1.05rem;
+            transition: background 0.2s, transform 0.2s;
+            box-shadow: 0 8px 20px rgba(37, 211, 102, 0.3);
         }
-        .btn-wa:hover { background: #20bd5a; }
-
-        .btn-close {
-            background: transparent;
-            color: var(--text-muted);
-            border: none;
-            padding: 10px;
-            width: 100%;
-            border-radius: 8px;
-            cursor: pointer;
-            font-size: 0.9rem;
-            font-weight: 600;
-            transition: color 0.2s;
+        .btn-wa:hover { 
+            background: #20bd5a; 
+            transform: scale(0.99);
         }
-        .btn-close:hover { color: #fff; }
 
         @media (max-width: 480px) {
             h1 { font-size: 2rem; }
-            .grid { padding: 20px 3% 40px; gap: 15px; }
+            .grid { padding: 15px 3% 30px; gap: 15px; }
+            .checkout-box { padding: 25px 15px; }
         }
     </style>
 </head>
 <body>
 
     <header>
-        <span class="badge">🔥 Colección Exclusiva</span>
+        <span class="badge">🔥 Colección Completa 2026</span>
         <h1>Fondos en Movimiento</h1>
-        <p>Dale vida a la pantalla de tu celular con efectos visuales únicos</p>
+        <p>Visualiza algunos modelos de muestra. Llévate la **colección entera** con un único pago.</p>
     </header>
 
-    <!-- Contenedor donde JS genera las tarjetas -->
+    <!-- Cuadrícula donde JavaScript genera solo las tarjetas de visualización -->
     <div id="gridContainer" class="grid"></div>
 
-    <!-- Modal de Pago Yape con WhatsApp -->
-    <div id="paymentModal" class="modal">
-        <div class="modal-content">
-            <div class="modal-header">Pago con Yape</div>
-            <div class="modal-subtitle">Fondo seleccionado: <strong id="fondoName" style="color: var(--accent);"></strong></div>
+    <!-- Sección de Pago Único y QR Global al Final -->
+    <section class="checkout-section">
+        <div class="checkout-box">
+            <div class="checkout-title">Acceso Total a la Carpeta</div>
+            <div class="checkout-subtitle">Adquiere todos los fondos en máxima resolución</div>
             
+            <div class="price-banner">S/ 10.00 <span style="font-size: 0.9rem; color: var(--text-muted); font-weight: 400;">(Pago Único)</span></div>
+
             <div class="qr-wrapper">
                 <img src="assets/tu_qr_yape.png" alt="QR Yape">
             </div>
 
             <div class="instructions">
-                <strong>Instrucciones:</strong><br>
-                1. Escanea el QR y realiza el pago de <strong>S/ 3.00</strong>.<br>
-                2. Envía tu captura por WhatsApp para recibir el enlace de la carpeta completa.
+                <strong>Instrucciones para la compra:</strong><br>
+                1. Escanea el QR y realiza el pago único de <strong>S/ 10.00</strong>.<br>
+                2. Haz clic en el botón de abajo para enviar tu comprobante por WhatsApp y recibir el enlace de descarga inmediato.
             </div>
             
-            <!-- ENLACE AUTOMÁTICO A WHATSAPP -->
+            <!-- ENLACE DIRECTO A WHATSAPP CON MENSAJE AUTOMÁTICO -->
             <a href="#" id="whatsappLink" class="btn-wa" target="_blank">
-                📱 Enviar captura por WhatsApp
+                📱 Enviar captura y reclamar colección
             </a>
-            
-            <button class="btn-close" onclick="closeModal()">Cerrar ventana</button>
         </div>
-    </div>
+    </section>
 
     <script>
-        // CAMBIA ESTE NÚMERO A "20" CUANDO TENGAS TODOS TUS VIDEOS SUBIDOS A LA CARPETA ASSETS
-        const totalFondos = 1; 
+        // Cambia este número a "20" cuando tengas tus 20 videos en la carpeta assets
+        const totalFondos = 4; 
 
         const fondos = Array.from({ length: totalFondos }, (_, i) => ({
             id: i + 1,
-            nombre: `Wallpaper Pro V${i + 1}`,
-            precio: "S/ 3.00",
+            nombre: `Wallpaper 0${i + 1}`,
             videoSrc: `assets/fondo${i + 1}.mp4`
         }));
 
@@ -346,11 +298,8 @@
                 </div>
                 <div class="card-info">
                     <h3>${fondo.nombre}</h3>
-                    <span class="price-tag">${fondo.precio}</span>
+                    <span class="preview-tag">Vista previa</span>
                 </div>
-                <button class="btn-buy" onclick="openModal('${fondo.nombre}')">
-                    ⚡ Adquirir Fondo
-                </button>
             `;
             gridContainer.appendChild(card);
         });
@@ -367,7 +316,7 @@
                     }
                     video.play().then(() => {
                         video.classList.add('loaded');
-                    }).catch(e => console.log("Reproducción automática pausada por políticas del navegador:", e));
+                    }).catch(e => console.log("Reproducción pausada por navegador:", e));
                 } else {
                     video.pause();
                 }
@@ -376,25 +325,11 @@
 
         videos.forEach(video => videoObserver.observe(video));
 
-        // Lógica del Modal y WhatsApp
-        const modal = document.getElementById('paymentModal');
-        const waNumber = "51999999999"; // REEMPLAZA CON TU NÚMERO DE WHATSAPP REAL (incluyendo código de país)
-
-        function openModal(nombreFondo) {
-            document.getElementById('fondoName').innerText = nombreFondo;
-            const waLink = document.getElementById('whatsappLink');
-            const mensaje = encodeURIComponent(`Hola, acabo de pagar por el fondo: *${nombreFondo}*. Te envío mi captura para recibir el enlace de la carpeta de Mega.`);
-            waLink.href = `https://wa.me/${waNumber}?text=${mensaje}`;
-            modal.classList.add('active');
-        }
-
-        function closeModal() {
-            modal.classList.remove('active');
-        }
-
-        modal.addEventListener('click', (e) => {
-            if (e.target === modal) closeModal();
-        });
+        // Configuración del botón de WhatsApp con el mensaje global de pago único
+        const waNumber = "51999999999"; // REEMPLAZA CON TU NÚMERO DE WHATSAPP REAL
+        const waLink = document.getElementById('whatsappLink');
+        const mensaje = encodeURIComponent(`Hola, acabo de realizar el pago único de S/ 10.00 por la colección completa de fondos. Te comparto mi comprobante para recibir el enlace de la carpeta.`);
+        waLink.href = `https://wa.me/${waNumber}?text=${mensaje}`;
     </script>
 </body>
 </html>
