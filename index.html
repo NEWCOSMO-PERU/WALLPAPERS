@@ -3,19 +3,21 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Wallpapers Pro - Colección Completa en Movimiento</title>
+    <title>WALLPAPERS PRO® — Colección Exclusiva de Fondos en Movimiento</title>
     <!-- Google Fonts Outfit -->
-    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;600;700;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800&display=swap" rel="stylesheet">
     <style>
         :root {
-            --bg-base: #07070a;
-            --bg-card: #121218;
-            --border-card: rgba(255, 255, 255, 0.08);
+            --bg-base: #050508;
+            --bg-card: #0e0e13;
+            --bg-card-hover: #16161f;
+            --border-card: rgba(255, 255, 255, 0.06);
+            --border-card-hover: rgba(0, 255, 204, 0.3);
             --accent: #00ffcc;
-            --accent-glow: rgba(0, 255, 204, 0.25);
+            --accent-glow: rgba(0, 255, 204, 0.15);
             --yape-purple: #7a1fd7;
             --text-main: #ffffff;
-            --text-muted: #94a3b8;
+            --text-muted: #8a99ad;
         }
 
         * { box-sizing: border-box; margin: 0; padding: 0; }
@@ -26,82 +28,95 @@
             font-family: 'Outfit', sans-serif;
             min-height: 100vh;
             overflow-x: hidden;
+            -webkit-font-smoothing: antialiased;
         }
 
-        /* Efecto de luz ambiental en el fondo */
+        /* Iluminación ambiental superior */
         body::before {
             content: '';
             position: fixed;
-            top: -200px;
+            top: -250px;
             left: 50%;
             transform: translateX(-50%);
-            width: 600px;
-            height: 400px;
-            background: radial-gradient(circle, rgba(0, 255, 204, 0.12) 0%, rgba(122, 31, 215, 0.05) 50%, transparent 80%);
+            width: 700px;
+            height: 450px;
+            background: radial-gradient(circle, rgba(0, 255, 204, 0.1) 0%, rgba(122, 31, 215, 0.04) 50%, transparent 75%);
             z-index: -1;
             pointer-events: none;
         }
 
-        /* Header Profesional */
+        /* Header Estilo App Store / Tienda Pro */
         header {
             text-align: center;
-            padding: 40px 20px 20px;
-            max-width: 800px;
+            padding: 50px 20px 30px;
+            max-width: 850px;
             margin: 0 auto;
         }
 
         .badge {
-            display: inline-block;
-            background: rgba(0, 255, 204, 0.1);
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            background: rgba(0, 255, 204, 0.08);
             color: var(--accent);
-            border: 1px solid rgba(0, 255, 204, 0.3);
+            border: 1px solid rgba(0, 255, 204, 0.25);
             padding: 6px 16px;
             border-radius: 50px;
-            font-size: 0.8rem;
-            font-weight: 600;
+            font-size: 0.75rem;
+            font-weight: 700;
             text-transform: uppercase;
-            letter-spacing: 1px;
-            margin-bottom: 15px;
+            letter-spacing: 1.2px;
+            margin-bottom: 20px;
         }
 
         h1 {
-            font-size: 2.5rem;
+            font-size: clamp(2.2rem, 5vw, 3.2rem);
             font-weight: 800;
-            letter-spacing: -1px;
-            margin-bottom: 10px;
-            background: linear-gradient(135deg, #ffffff 30%, #94a3b8 100%);
+            letter-spacing: -1.5px;
+            margin-bottom: 12px;
+            background: linear-gradient(135deg, #ffffff 40%, #8a99ad 100%);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
         }
 
         header p {
             color: var(--text-muted);
-            font-size: 1rem;
+            font-size: 1.05rem;
+            line-height: 1.5;
+            max-width: 600px;
+            margin: 0 auto;
         }
 
-        /* Cuadrícula de Demostración de Videos */
+        /* Galería de Videos Grid */
         .grid {
             display: grid;
             grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
-            gap: 20px;
-            padding: 20px 5% 40px;
+            gap: 22px;
+            padding: 20px 5% 50px;
             max-width: 1300px;
             margin: 0 auto;
         }
 
         .card {
             background: var(--bg-card);
-            border-radius: 16px;
+            border-radius: 20px;
             padding: 12px;
             border: 1px solid var(--border-card);
             position: relative;
+            transition: transform 0.3s cubic-bezier(0.2, 0.8, 0.2, 1), background 0.3s, border-color 0.3s, box-shadow 0.3s;
         }
 
-        /* Contenedor de video (Formato celular 9:16) */
+        .card:hover {
+            transform: translateY(-6px);
+            background: var(--bg-card-hover);
+            border-color: var(--border-card-hover);
+            box-shadow: 0 12px 30px var(--accent-glow);
+        }
+
         .video-container {
             width: 100%;
             aspect-ratio: 9 / 16;
-            border-radius: 12px;
+            border-radius: 14px;
             overflow: hidden;
             background: #000;
             position: relative;
@@ -114,7 +129,7 @@
             content: "Cargando...";
             position: absolute;
             color: var(--text-muted);
-            font-size: 0.8rem;
+            font-size: 0.75rem;
             font-weight: 500;
             z-index: 1;
         }
@@ -126,7 +141,7 @@
             position: relative;
             z-index: 2;
             opacity: 0;
-            transition: opacity 0.5s ease;
+            transition: opacity 0.4s ease;
             pointer-events: none;
         }
         .preview-video.loaded { opacity: 1; }
@@ -135,7 +150,8 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
-            margin-top: 10px;
+            margin-top: 12px;
+            padding: 0 4px;
         }
 
         .card h3 { 
@@ -144,35 +160,39 @@
             color: #fff;
         }
 
-        .preview-tag {
-            font-size: 0.75rem;
-            color: var(--text-muted);
-            background: rgba(255, 255, 255, 0.05);
+        .quality-badge {
+            font-size: 0.68rem;
+            color: var(--accent);
+            background: rgba(0, 255, 204, 0.08);
+            border: 1px solid rgba(0, 255, 204, 0.2);
             padding: 3px 8px;
             border-radius: 6px;
+            font-weight: 600;
         }
 
-        /* Sección de Compra Final / Checkout */
+        /* Checkout Pro Section */
         .checkout-section {
-            max-width: 500px;
-            margin: 20px auto 80px;
+            max-width: 520px;
+            margin: 20px auto 60px;
             padding: 0 20px;
         }
 
         .checkout-box {
-            background: linear-gradient(145deg, #121218 0%, #1a1a24 100%);
-            border: 2px solid rgba(0, 255, 204, 0.3);
-            border-radius: 24px;
-            padding: 35px 25px;
+            background: linear-gradient(145deg, #0e0e13 0%, #15151f 100%);
+            border: 2px solid rgba(0, 255, 204, 0.25);
+            border-radius: 28px;
+            padding: 40px 30px;
             text-align: center;
-            box-shadow: 0 20px 50px var(--accent-glow);
+            box-shadow: 0 25px 60px var(--accent-glow);
+            position: relative;
+            overflow: hidden;
         }
 
         .checkout-title {
             font-size: 1.8rem;
             font-weight: 800;
             color: #fff;
-            margin-bottom: 8px;
+            margin-bottom: 6px;
         }
 
         .checkout-subtitle {
@@ -182,41 +202,86 @@
         }
 
         .price-banner {
+            display: inline-flex;
+            align-items: baseline;
+            gap: 8px;
+            background: rgba(0, 255, 204, 0.06);
+            border: 1px dashed rgba(0, 255, 204, 0.3);
+            padding: 12px 24px;
+            border-radius: 16px;
+            margin-bottom: 25px;
+        }
+
+        .price-amount {
             font-size: 2.2rem;
             font-weight: 800;
             color: var(--accent);
-            margin-bottom: 20px;
-            background: rgba(0, 255, 204, 0.05);
-            padding: 10px;
-            border-radius: 14px;
-            border: 1px dashed rgba(0, 255, 204, 0.3);
+            letter-spacing: -1px;
+        }
+
+        .price-label {
+            font-size: 0.85rem;
+            color: var(--text-muted);
+            font-weight: 500;
         }
 
         .qr-wrapper {
             background: #ffffff;
             padding: 14px;
-            border-radius: 16px;
+            border-radius: 18px;
             margin: 0 auto 20px;
             width: fit-content;
-            box-shadow: 0 8px 20px rgba(0,0,0,0.3);
+            box-shadow: 0 10px 25px rgba(0,0,0,0.4);
         }
-        .qr-wrapper img { width: 190px; height: 190px; display: block; }
+        .qr-wrapper img { width: 180px; height: 180px; display: block; }
+
+        /* Copiar número Yape con un toque */
+        .yape-clipboard {
+            background: rgba(255, 255, 255, 0.04);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            padding: 10px 14px;
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 20px;
+            font-size: 0.9rem;
+        }
+
+        .yape-number {
+            font-weight: 700;
+            color: #d1a3ff;
+            letter-spacing: 1px;
+        }
+
+        .btn-copy {
+            background: rgba(122, 31, 215, 0.2);
+            color: #d1a3ff;
+            border: 1px solid rgba(122, 31, 215, 0.4);
+            padding: 6px 12px;
+            border-radius: 8px;
+            font-size: 0.75rem;
+            font-weight: 700;
+            cursor: pointer;
+            transition: background 0.2s;
+        }
+        .btn-copy:hover { background: rgba(122, 31, 215, 0.4); }
 
         .instructions {
             font-size: 0.85rem;
             color: #cbd5e1;
-            background: rgba(255, 255, 255, 0.03);
+            background: rgba(255, 255, 255, 0.02);
             padding: 14px;
             border-radius: 12px;
             margin-bottom: 25px;
-            border: 1px solid rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.04);
             text-align: left;
+            line-height: 1.5;
         }
 
-        /* Botón de WhatsApp Principal */
         .btn-wa {
             background: #25D366;
-            color: white;
+            color: #000;
             text-decoration: none;
             display: flex;
             align-items: center;
@@ -224,62 +289,124 @@
             gap: 10px;
             padding: 16px;
             border-radius: 14px;
-            font-weight: 700;
+            font-weight: 800;
             font-size: 1.05rem;
-            transition: background 0.2s, transform 0.2s;
-            box-shadow: 0 8px 20px rgba(37, 211, 102, 0.3);
+            transition: transform 0.2s, box-shadow 0.2s;
+            box-shadow: 0 8px 25px rgba(37, 211, 102, 0.3);
         }
         .btn-wa:hover { 
-            background: #20bd5a; 
             transform: scale(0.99);
+            box-shadow: 0 4px 15px rgba(37, 211, 102, 0.4);
+        }
+
+        /* Sección de Preguntas Frecuentes (FAQ) */
+        .faq-section {
+            max-width: 700px;
+            margin: 0 auto 80px;
+            padding: 0 20px;
+        }
+
+        .faq-title {
+            font-size: 1.4rem;
+            font-weight: 700;
+            text-align: center;
+            margin-bottom: 25px;
+            color: #fff;
+        }
+
+        .faq-item {
+            background: var(--bg-card);
+            border: 1px solid var(--border-card);
+            border-radius: 14px;
+            margin-bottom: 12px;
+            overflow: hidden;
+        }
+
+        .faq-question {
+            padding: 16px 20px;
+            font-size: 0.95rem;
+            font-weight: 600;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .faq-answer {
+            padding: 0 20px 16px;
+            font-size: 0.88rem;
+            color: var(--text-muted);
+            line-height: 1.5;
         }
 
         @media (max-width: 480px) {
-            h1 { font-size: 2rem; }
-            .grid { padding: 15px 3% 30px; gap: 15px; }
-            .checkout-box { padding: 25px 15px; }
+            .grid { padding: 15px 3% 30px; gap: 14px; }
+            .checkout-box { padding: 30px 18px; }
         }
     </style>
 </head>
 <body>
 
     <header>
-        <span class="badge">🔥 Colección Completa 2026</span>
-        <h1>Fondos en Movimiento</h1>
-        <p>Visualiza algunos modelos de muestra. Llévate la **colección entera** con un único pago.</p>
+        <span class="badge">✨ Edición Limitada 2026</span>
+        <h1>Fondos en Movimiento Pro</h1>
+        <p>Dale una estética brutal a tu celular con visuales fluidos en máxima resolución optimizados para cualquier pantalla.</p>
     </header>
 
-    <!-- Cuadrícula donde JavaScript genera solo las tarjetas de visualización -->
+    <!-- Galería Dinámica -->
     <div id="gridContainer" class="grid"></div>
 
-    <!-- Sección de Pago Único y QR Global al Final -->
+    <!-- Sección de Checkout Único -->
     <section class="checkout-section">
         <div class="checkout-box">
-            <div class="checkout-title">Acceso Total a la Carpeta</div>
-            <div class="checkout-subtitle">Adquiere todos los fondos en máxima resolución</div>
+            <div class="checkout-title">Pack Completo VIP</div>
+            <div class="checkout-subtitle">Acceso instantáneo a toda la carpeta en Mega</div>
             
-            <div class="price-banner">S/ 10.00 <span style="font-size: 0.9rem; color: var(--text-muted); font-weight: 400;">(Pago Único)</span></div>
+            <div class="price-banner">
+                <span class="price-amount">S/ 10.00</span>
+                <span class="price-label">Pago Único</span>
+            </div>
 
             <div class="qr-wrapper">
                 <img src="assets/tu_qr_yape.png" alt="QR Yape">
             </div>
 
+            <!-- Copiar número rápido -->
+            <div class="yape-clipboard">
+                <span>Yape: <strong id="yapeNumText" class="yape-number">999 999 999</strong></span>
+                <button class="btn-copy" onclick="copiarNumero()">Copiar</button>
+            </div>
+
             <div class="instructions">
-                <strong>Instrucciones para la compra:</strong><br>
-                1. Escanea el QR y realiza el pago único de <strong>S/ 10.00</strong>.<br>
-                2. Haz clic en el botón de abajo para enviar tu comprobante por WhatsApp y recibir el enlace de descarga inmediato.
+                <strong>¿Cómo recibir tus fondos?</strong><br>
+                1. Escanea el QR o yapea al número indicado.<br>
+                2. Toca el botón verde para enviar tu captura a WhatsApp.<br>
+                3. Recibe el enlace directo de descarga en segundos.
             </div>
             
-            <!-- ENLACE DIRECTO A WHATSAPP CON MENSAJE AUTOMÁTICO -->
             <a href="#" id="whatsappLink" class="btn-wa" target="_blank">
-                📱 Enviar captura y reclamar colección
+                📱 Enviar Comprobante y Descargar
             </a>
         </div>
     </section>
 
+    <!-- FAQ Profesional -->
+    <section class="faq-section">
+        <div class="faq-title">Preguntas Frecuentes</div>
+        <div class="faq-item">
+            <div class="faq-question">¿Funcionan en Android y iPhone? <span>▼</span></div>
+            <div class="faq-answer">Sí, los videos se descargan en formato MP4 estándar compatible con cualquier aplicación nativa o app de terceros para poner fondos animados en la pantalla de bloqueo o inicio.</div>
+        </div>
+        <div class="faq-item">
+            <div class="faq-question">¿Cuánto pesan los archivos de la carpeta? <span>▼</span></div>
+            <div class="faq-answer">Están ultra optimizados para pesar menos de 1 MB cada uno, garantizando fluidez absoluta sin agotar tu batería ni consumir espacio innecesario.</div>
+        </div>
+    </section>
+
     <script>
-        // Cambia este número a "20" cuando tengas tus 20 videos en la carpeta assets
-        const totalFondos = 4; 
+        // Cambia a 20 cuando cargues todos tus archivos en assets
+        const totalFondos = 20; 
+        const numeroYape = "51999999999"; // Cambia por tu número real con código de país (Ej: 51912345678)
 
         const fondos = Array.from({ length: totalFondos }, (_, i) => ({
             id: i + 1,
@@ -298,25 +425,20 @@
                 </div>
                 <div class="card-info">
                     <h3>${fondo.nombre}</h3>
-                    <span class="preview-tag">Vista previa</span>
+                    <span class="quality-badge">4K 60FPS</span>
                 </div>
             `;
             gridContainer.appendChild(card);
         });
 
-        // Intersection Observer para optimizar la reproducción automática tipo GIF
+        // Intersection Observer para optimizar la carga de videos en segundo plano
         const videos = document.querySelectorAll('.preview-video');
-        
         const videoObserver = new IntersectionObserver((entries) => {
             entries.forEach(entry => {
                 const video = entry.target;
                 if (entry.isIntersecting) {
-                    if (!video.src) {
-                        video.src = video.getAttribute('data-src');
-                    }
-                    video.play().then(() => {
-                        video.classList.add('loaded');
-                    }).catch(e => console.log("Reproducción pausada por navegador:", e));
+                    if (!video.src) video.src = video.getAttribute('data-src');
+                    video.play().then(() => video.classList.add('loaded')).catch(e => {});
                 } else {
                     video.pause();
                 }
@@ -325,11 +447,19 @@
 
         videos.forEach(video => videoObserver.observe(video));
 
-        // Configuración del botón de WhatsApp con el mensaje global de pago único
-        const waNumber = "51999999999"; // REEMPLAZA CON TU NÚMERO DE WHATSAPP REAL
+        // Enlace automático de WhatsApp
         const waLink = document.getElementById('whatsappLink');
-        const mensaje = encodeURIComponent(`Hola, acabo de realizar el pago único de S/ 10.00 por la colección completa de fondos. Te comparto mi comprobante para recibir el enlace de la carpeta.`);
-        waLink.href = `https://wa.me/${waNumber}?text=${mensaje}`;
+        const mensaje = encodeURIComponent(`Hola, acabo de realizar el pago único de S/ 10.00 por la colección completa de wallpapers. Te comparto mi comprobante.`);
+        waLink.href = `https://wa.me/${numeroYape}?text=${mensaje}`;
+
+        // Función para copiar número Yape al portapapeles
+        function copiarNumero() {
+            const numPuro = numeroYape.replace("51", ""); // Remueve código de país para mostrar limpio si deseas
+            navigator.clipboard.writeText(numPuro);
+            const btn = document.querySelector('.btn-copy');
+            btn.innerText = "¡Copiado!";
+            setTimeout(() => btn.innerText = "Copiar", 2000);
+        }
     </script>
 </body>
 </html>
