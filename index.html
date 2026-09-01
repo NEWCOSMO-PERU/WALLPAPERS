@@ -4,7 +4,6 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Wallpapers Pro - Fondos Animados en Movimiento</title>
-    <!-- Google Fonts Inter -->
     <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;600;700;800&display=swap" rel="stylesheet">
     <style>
         :root {
@@ -250,8 +249,9 @@
             text-align: left;
         }
 
-        .btn-wa {
-            background: #25D366;
+        /* Botón de acceso directo a Mega */
+        .btn-mega {
+            background: #d92626;
             color: white;
             text-decoration: none;
             display: flex;
@@ -265,7 +265,7 @@
             margin-bottom: 10px;
             transition: background 0.2s;
         }
-        .btn-wa:hover { background: #20bd5a; }
+        .btn-mega:hover { background: #b81d1d; }
 
         .btn-close {
             background: transparent;
@@ -281,7 +281,6 @@
         }
         .btn-close:hover { color: #fff; }
 
-        /* Responsividad móvil */
         @media (max-width: 480px) {
             h1 { font-size: 2rem; }
             .grid { padding: 20px 3% 40px; gap: 15px; }
@@ -291,19 +290,17 @@
 <body>
 
     <header>
-        <span class="badge">🔥 Colección Exclusiva 2026</span>
+        <span class="badge">🔥 Colección Exclusiva</span>
         <h1>Fondos en Movimiento</h1>
         <p>Dale vida a la pantalla de tu celular con efectos visuales únicos</p>
     </header>
 
-    <!-- Contenedor donde JS genera las tarjetas -->
     <div id="gridContainer" class="grid"></div>
 
-    <!-- Modal de Pago Yape Pro -->
     <div id="paymentModal" class="modal">
         <div class="modal-content">
             <div class="modal-header">Pago con Yape</div>
-            <div class="modal-subtitle">Fondo: <strong id="fondoName" style="color: var(--accent);"></strong></div>
+            <div class="modal-subtitle">Fondo seleccionado: <strong id="fondoName" style="color: var(--accent);"></strong></div>
             
             <div class="qr-wrapper">
                 <img src="assets/tu_qr_yape.png" alt="QR Yape">
@@ -311,20 +308,21 @@
 
             <div class="instructions">
                 <strong>Instrucciones:</strong><br>
-                1. Escanea el QR y paga <strong>S/ 3.00</strong>.<br>
-                2. Haz clic abajo para enviar tu comprobante y recibir el archivo en Mega.
+                1. Escanea el QR y realiza el pago de <strong>S/ 3.00</strong>.<br>
+                2. Haz clic en el botón de abajo para acceder de inmediato a la carpeta completa.
             </div>
             
-            <a href="#" id="whatsappLink" class="btn-wa" target="_blank">
-                📱 Enviar captura por WhatsApp
+            <a href="https://mega.nz/TU_ENLACE_DE_CARPETA_AQUI" id="megaLink" class="btn-mega" target="_blank">
+                📥 Acceder a la Carpeta de Mega
             </a>
-            <button class="btn-close" onclick="closeModal()">Cancelar y volver</button>
+            
+            <button class="btn-close" onclick="closeModal()">Cerrar ventana</button>
         </div>
     </div>
 
     <script>
-        // Cambia este número a 20 cuando ya tengas todos tus videos subidos
-        const totalFondos = 5; 
+        // CAMBIA ESTE NÚMERO A "20" CUANDO TENGAS TODOS TUS VIDEOS SUBIDOS A LA CARPETA ASSETS
+        const totalFondos = 1; 
 
         const fondos = Array.from({ length: totalFondos }, (_, i) => ({
             id: i + 1,
@@ -353,7 +351,7 @@
             gridContainer.appendChild(card);
         });
 
-        // Intersection Observer para optimizar la reproducción tipo GIF
+        // Intersection Observer para optimizar la reproducción automática tipo GIF
         const videos = document.querySelectorAll('.preview-video');
         
         const videoObserver = new IntersectionObserver((entries) => {
@@ -376,13 +374,9 @@
 
         // Lógica del Modal
         const modal = document.getElementById('paymentModal');
-        const waNumber = "51999999999"; // REEMPLAZA CON TU NÚMERO DE WHATSAPP REAL
 
         function openModal(nombreFondo) {
             document.getElementById('fondoName').innerText = nombreFondo;
-            const waLink = document.getElementById('whatsappLink');
-            const mensaje = encodeURIComponent(`Hola, acabo de realizar el pago por el fondo: *${nombreFondo}*. Te comparto mi comprobante para recibir el enlace de descarga en Mega.`);
-            waLink.href = `https://wa.me/${waNumber}?text=${mensaje}`;
             modal.classList.add('active');
         }
 
