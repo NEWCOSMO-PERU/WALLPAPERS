@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Wallpapers Pro - Fondos Animados en Movimiento</title>
+    <!-- Google Fonts Outfit -->
     <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;600;700;800&display=swap" rel="stylesheet">
     <style>
         :root {
@@ -249,9 +250,9 @@
             text-align: left;
         }
 
-        /* Botón de acceso directo a Mega */
-        .btn-mega {
-            background: #d92626;
+        /* Botón de WhatsApp */
+        .btn-wa {
+            background: #25D366;
             color: white;
             text-decoration: none;
             display: flex;
@@ -265,7 +266,7 @@
             margin-bottom: 10px;
             transition: background 0.2s;
         }
-        .btn-mega:hover { background: #b81d1d; }
+        .btn-wa:hover { background: #20bd5a; }
 
         .btn-close {
             background: transparent;
@@ -295,8 +296,10 @@
         <p>Dale vida a la pantalla de tu celular con efectos visuales únicos</p>
     </header>
 
+    <!-- Contenedor donde JS genera las tarjetas -->
     <div id="gridContainer" class="grid"></div>
 
+    <!-- Modal de Pago Yape con WhatsApp -->
     <div id="paymentModal" class="modal">
         <div class="modal-content">
             <div class="modal-header">Pago con Yape</div>
@@ -309,11 +312,12 @@
             <div class="instructions">
                 <strong>Instrucciones:</strong><br>
                 1. Escanea el QR y realiza el pago de <strong>S/ 3.00</strong>.<br>
-                2. Haz clic en el botón de abajo para acceder de inmediato a la carpeta completa.
+                2. Envía tu captura por WhatsApp para recibir el enlace de la carpeta completa.
             </div>
             
-            <a href="https://mega.nz/TU_ENLACE_DE_CARPETA_AQUI" id="megaLink" class="btn-mega" target="_blank">
-                📥 Acceder a la Carpeta de Mega
+            <!-- ENLACE AUTOMÁTICO A WHATSAPP -->
+            <a href="#" id="whatsappLink" class="btn-wa" target="_blank">
+                📱 Enviar captura por WhatsApp
             </a>
             
             <button class="btn-close" onclick="closeModal()">Cerrar ventana</button>
@@ -372,11 +376,15 @@
 
         videos.forEach(video => videoObserver.observe(video));
 
-        // Lógica del Modal
+        // Lógica del Modal y WhatsApp
         const modal = document.getElementById('paymentModal');
+        const waNumber = "51999999999"; // REEMPLAZA CON TU NÚMERO DE WHATSAPP REAL (incluyendo código de país)
 
         function openModal(nombreFondo) {
             document.getElementById('fondoName').innerText = nombreFondo;
+            const waLink = document.getElementById('whatsappLink');
+            const mensaje = encodeURIComponent(`Hola, acabo de pagar por el fondo: *${nombreFondo}*. Te envío mi captura para recibir el enlace de la carpeta de Mega.`);
+            waLink.href = `https://wa.me/${waNumber}?text=${mensaje}`;
             modal.classList.add('active');
         }
 
