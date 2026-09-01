@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>WALLPAPERS PRO® — Colección Exclusiva de Fondos en Movimiento</title>
+    <title>WALLPAPERS PRO — Colección Exclusiva de Fondos en Movimiento</title>
     <!-- Google Fonts Outfit -->
     <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800&display=swap" rel="stylesheet">
     <style>
@@ -15,7 +15,6 @@
             --border-card-hover: rgba(0, 255, 204, 0.3);
             --accent: #00ffcc;
             --accent-glow: rgba(0, 255, 204, 0.15);
-            --yape-purple: #7a1fd7;
             --text-main: #ffffff;
             --text-muted: #8a99ad;
         }
@@ -50,9 +49,30 @@
         /* Header Estilo Tienda Pro */
         header {
             text-align: center;
-            padding: 50px 20px 30px;
+            padding: 40px 20px 30px;
             max-width: 850px;
             margin: 0 auto;
+        }
+
+        .brand-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 14px;
+            margin-bottom: 20px;
+        }
+
+        .logo-img {
+            width: 75px;
+            height: 75px;
+            object-fit: contain;
+            filter: drop-shadow(0 0 15px rgba(255, 215, 0, 0.3));
+            animation: floatLogo 4s ease-in-out infinite;
+        }
+
+        @keyframes floatLogo {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-6px); }
         }
 
         .badge {
@@ -62,13 +82,12 @@
             background: rgba(0, 255, 204, 0.08);
             color: var(--accent);
             border: 1px solid rgba(0, 255, 204, 0.25);
-            padding: 6px 16px;
+            padding: 5px 14px;
             border-radius: 50px;
-            font-size: 0.75rem;
+            font-size: 0.72rem;
             font-weight: 700;
             text-transform: uppercase;
             letter-spacing: 1.2px;
-            margin-bottom: 20px;
         }
 
         h1 {
@@ -89,7 +108,7 @@
             margin: 0 auto;
         }
 
-        /* Galería de Videos Grid (Optimizado para 6 por página) */
+        /* Galería de Videos Grid (Exactamente 6 por página) */
         .grid {
             display: grid;
             grid-template-columns: repeat(auto-fill, minmax(210px, 1fr));
@@ -350,11 +369,11 @@
             line-height: 1.5;
         }
 
-        /* Footer Moderno */
+        /* Footer Moderno con Logo */
         footer {
             background: #030305;
             border-top: 1px solid var(--border-card);
-            padding: 30px 20px;
+            padding: 35px 20px;
             text-align: center;
             margin-top: auto;
         }
@@ -365,7 +384,14 @@
             display: flex;
             flex-direction: column;
             align-items: center;
-            gap: 10px;
+            gap: 12px;
+        }
+
+        .footer-logo {
+            width: 40px;
+            height: 40px;
+            object-fit: contain;
+            opacity: 0.85;
         }
 
         .footer-brand {
@@ -391,8 +417,12 @@
 <body>
 
     <header>
-        <span class="badge">✨ Edición Limitada 2026</span>
-        <h1>Fondos en Movimiento Pro</h1>
+        <div class="brand-container">
+            <!-- Logo incrustado en la cabecera -->
+            <img src="assets/logo.png" alt="Logo WALLPAPERS PRO" class="logo-img">
+            <span class="badge">✨ Edición Limitada 2026</span>
+        </div>
+        <h1>WALLPAPERS PRO</h1>
         <p>Dale una estética brutal a tu celular con visuales fluidos en máxima resolución optimizados para cualquier pantalla.</p>
     </header>
 
@@ -447,9 +477,10 @@
         </div>
     </section>
 
-    <!-- Footer Moderno -->
+    <!-- Footer Moderno con Logo -->
     <footer>
         <div class="footer-content">
+            <img src="assets/logo.png" alt="Logo Footer" class="footer-logo">
             <div class="footer-brand">WALLPAPERS PRO®</div>
             <div class="footer-copy">Todos los derechos reservados. Diseñado para ofrecer la mejor experiencia visual en móviles.</div>
         </div>
@@ -457,7 +488,7 @@
 
     <script>
         // CONFIGURACIÓN DE LOS FONDOS Y PAGINACIÓN (6 por página)
-        const totalFondos = 18; // Cambia este número al total de fondos que tengas en tu carpeta assets (ej: 18 o 24)
+        const totalFondos = 18; // Cambia este número al total de fondos que tengas en tu carpeta assets
         const porPagina = 6;    // 6 elementos exactos por página
         let paginaActual = 1;
 
@@ -523,7 +554,7 @@
             if (paginaActual > totalPaginas) paginaActual = totalPaginas;
             
             renderizarPagina();
-            window.scrollTo({ top: 0, behavior: 'smooth' }); // Sube suavemente al inicio al cambiar de página
+            window.scrollTo({ top: 0, behavior: 'smooth' });
         }
 
         // Inicializar la primera página al cargar
