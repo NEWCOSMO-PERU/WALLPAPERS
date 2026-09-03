@@ -6,6 +6,8 @@
     <title>WALLPAPERS PRO — Colección Exclusiva 4K</title>
     <!-- Google Fonts Outfit -->
     <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;600;700;800;900&display=swap" rel="stylesheet">
+    <!-- Font Awesome (Íconos) -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
         :root {
             --bg-base: #030307;
@@ -459,7 +461,7 @@
             font-weight: 400;
         }
 
-        /* Footer Moderno con Logo */
+        /* Footer Moderno con Logo y Accesos Directos */
         footer {
             background: #020204;
             border-top: 1px solid var(--border-card);
@@ -474,7 +476,7 @@
             display: flex;
             flex-direction: column;
             align-items: center;
-            gap: 14px;
+            gap: 20px;
         }
 
         .footer-logo {
@@ -493,6 +495,57 @@
             -webkit-text-fill-color: transparent;
         }
 
+        /* Red de Íconos / Navegación Footer */
+        .footer-nav {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 15px;
+            margin: 10px 0;
+            width: 100%;
+        }
+
+        .footer-nav-item {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 8px;
+            text-decoration: none;
+            color: var(--text-muted);
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid rgba(0, 255, 204, 0.15);
+            padding: 12px 18px;
+            border-radius: 14px;
+            transition: all 0.3s ease;
+            min-width: 100px;
+        }
+
+        .footer-nav-item i {
+            font-size: 1.4rem;
+            color: var(--accent);
+            transition: transform 0.3s ease, color 0.3s ease;
+        }
+
+        .footer-nav-item span {
+            font-size: 0.75rem;
+            font-weight: 800;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+        }
+
+        .footer-nav-item:hover {
+            background: var(--bg-card-hover);
+            border-color: var(--accent);
+            color: #ffffff;
+            transform: translateY(-4px);
+            box-shadow: 0 6px 20px var(--glow-cyan);
+        }
+
+        .footer-nav-item:hover i {
+            transform: scale(1.15);
+            color: var(--accent-gold);
+        }
+
         .footer-copy {
             font-size: 0.85rem;
             color: #94a3b8;
@@ -502,6 +555,10 @@
         @media (max-width: 480px) {
             .grid { padding: 15px 3% 20px; gap: 14px; }
             .checkout-box { padding: 35px 20px; }
+            .footer-nav { gap: 10px; }
+            .footer-nav-item { min-width: 80px; padding: 10px; }
+            .footer-nav-item i { font-size: 1.2rem; }
+            .footer-nav-item span { font-size: 0.68rem; }
         }
     </style>
 </head>
@@ -576,11 +633,32 @@
         </div>
     </section>
 
-    <!-- Footer Moderno con Logo -->
+    <!-- Footer Moderno con Logo y Secciones Adicionales -->
     <footer>
         <div class="footer-content">
             <img src="assets/logo.png" alt="Logo Footer" class="footer-logo">
             <div class="footer-brand">WALLPAPERS PRO®</div>
+            
+            <!-- Navegación con Íconos -->
+            <nav class="footer-nav">
+                <a href="https://newcosmo-peru.github.io/MANUALES/" target="_blank" class="footer-nav-item">
+                    <i class="fa-solid fa-book-open"></i>
+                    <span>Manuales</span>
+                </a>
+                <a href="https://newcosmo-peru.github.io/SOLUCIONES/" target="_blank" class="footer-nav-item">
+                    <i class="fa-solid fa-wand-magic-sparkles"></i>
+                    <span>Soluciones</span>
+                </a>
+                <a href="https://newcosmo-peru.github.io/STORE/" target="_blank" class="footer-nav-item">
+                    <i class="fa-solid fa-bag-shopping"></i>
+                    <span>Store</span>
+                </a>
+                <a href="https://newcosmo-peru.github.io/TONOS/" target="_blank" class="footer-nav-item">
+                    <i class="fa-solid fa-music"></i>
+                    <span>Tonos</span>
+                </a>
+            </nav>
+
             <div class="footer-copy">Todos los derechos reservados. Diseñado para ofrecer la mejor experiencia visual en móviles.</div>
         </div>
     </footer>
