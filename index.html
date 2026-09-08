@@ -459,7 +459,6 @@
             color: var(--accent);
         }
 
-        /* Estado Abierto de la Pregunta */
         .faq-item.active .faq-question span {
             transform: rotate(180deg);
         }
@@ -476,11 +475,11 @@
         }
 
         .faq-item.active .faq-answer {
-            max-height: 300px; /* Altura suficiente para el contenido */
+            max-height: 300px;
             padding: 0 22px 18px;
         }
 
-        /* NUEVO FOOTER MULTI-COLUMNA */
+        /* FOOTER MULTI-COLUMNA */
         footer {
             background: #020204;
             border-top: 1px solid var(--border-card);
@@ -690,9 +689,9 @@
 </head>
 <body>
 
-    <!-- SPLASH SCREEN (SOLO LOGO + BARRA DE CARGA) -->
+    <!-- SPLASH SCREEN -->
     <div id="splashScreen">
-        <img src="assets/logo.png" alt="Logo Splash" class="splash-logo">
+        <img src="logo.png" alt="Logo Splash" class="splash-logo">
         <div class="loader-bar">
             <div class="loader-progress"></div>
         </div>
@@ -705,15 +704,15 @@
 
     <header>
         <div class="brand-container">
-            <!-- Logo grande con gran brillo neón -->
-            <img src="assets/logo.png" alt="Logo WALLPAPERS PRO" class="logo-img">
+            <!-- Logo principal corregido -->
+            <img src="logo.png" alt="Logo WALLPAPERS PRO" class="logo-img">
             <span class="badge">🔥 Colección Exclusiva 2026</span>
         </div>
         <h1>WALLPAPERS PRO</h1>
         <p>Dale una estética brutal a tu celular con visuales fluidos en máxima resolución optimizados para cualquier pantalla.</p>
     </header>
 
-    <!-- Galería Dinámica (Exactamente 6 por página) -->
+    <!-- Galería Dinámica -->
     <div id="gridContainer" class="grid"></div>
 
     <!-- Controles de Paginación -->
@@ -735,7 +734,8 @@
             </div>
 
             <div class="qr-wrapper">
-                <img src="assets/qr-yape.png" alt="QR Yape">
+                <!-- QR Yape corregido -->
+                <img src="qr-yape.png" alt="QR Yape">
             </div>
 
             <div class="instructions">
@@ -774,13 +774,13 @@
         </div>
     </section>
 
-    <!-- Footer Estilo Multi-Columna -->
+    <!-- Footer -->
     <footer>
         <div class="footer-container">
-            <!-- Columna 1: Marca e información -->
             <div class="footer-col">
                 <div class="footer-brand-header">
-                    <img src="assets/logo.png" alt="Logo Footer" class="footer-logo">
+                    <!-- Logo Footer corregido -->
+                    <img src="logo.png" alt="Logo Footer" class="footer-logo">
                     <span class="footer-brand-name">WALLPAPERS PRO</span>
                 </div>
                 <p>Plataforma líder en contenidos visuales y personalización móvil de alta gama. Adquiere experiencias estéticas orientadas a destacar al máximo tu dispositivo.</p>
@@ -792,7 +792,6 @@
                 </div>
             </div>
 
-            <!-- Columna 2: Accesos Rápidos -->
             <div class="footer-col">
                 <h3>Accesos Rápidos</h3>
                 <ul class="footer-links-list">
@@ -802,7 +801,6 @@
                 </ul>
             </div>
 
-            <!-- Columna 3: Contáctanos -->
             <div class="footer-col">
                 <h3>Contáctanos</h3>
                 <div class="footer-contact-item">
@@ -825,7 +823,6 @@
     </footer>
 
     <script>
-        // Ocultar Splash Screen después de cargar
         window.addEventListener('load', () => {
             setTimeout(() => {
                 const splash = document.getElementById('splashScreen');
@@ -833,31 +830,23 @@
             }, 1200);
         });
 
-        // INTERACTIVIDAD FAQ (ACORDEÓN)
         document.querySelectorAll('.faq-question').forEach(question => {
             question.addEventListener('click', () => {
                 const item = question.parentElement;
-                
-                // Opcional: Cerrar los demás al abrir uno nuevo
                 document.querySelectorAll('.faq-item').forEach(otherItem => {
                     if (otherItem !== item) {
                         otherItem.classList.remove('active');
                     }
                 });
-
-                // Alternar estado actual
                 item.classList.toggle('active');
             });
         });
 
-        // CONFIGURACIÓN DE LOS FONDOS Y PAGINACIÓN (6 por página)
-        const totalFondos = 33; // Cambia este número al total de fondos que tengas en tu carpeta assets
-        const porPagina = 6;    // 6 elementos exactos por página
+        const totalFondos = 33;
+        const porPagina = 6;
         let paginaActual = 1;
+        const numeroYape = "51907546093";
 
-        const numeroYape = "51907546093"; // Número de contacto
-
-        // Genera el array completo de fondos automáticamente
         const todosLosFondos = Array.from({ length: totalFondos }, (_, i) => ({
             id: i + 1,
             nombre: `Wallpaper 0${i + 1}`,
@@ -887,7 +876,6 @@
                 gridContainer.appendChild(card);
             });
 
-            // Activar observación de video para los elementos de esta página
             const videos = gridContainer.querySelectorAll('.preview-video');
             const videoObserver = new IntersectionObserver((entries) => {
                 entries.forEach(entry => {
@@ -903,7 +891,6 @@
 
             videos.forEach(video => videoObserver.observe(video));
 
-            // Actualizar controles de paginación
             const totalPaginas = Math.ceil(totalFondos / porPagina);
             document.getElementById('pageIndicator').innerText = `Página ${paginaActual} de ` + totalPaginas;
             document.getElementById('prevBtn').disabled = paginaActual === 1;
@@ -920,10 +907,8 @@
             window.scrollTo({ top: 0, behavior: 'smooth' });
         }
 
-        // Inicializar la primera página al cargar
         renderizarPagina();
 
-        // Enlaces automáticos de WhatsApp (Checkout y botón flotante)
         const mensaje = encodeURIComponent(`Hola, acabo de realizar el pago único de S/ 10.00 por la colección completa de wallpapers. Te comparto mi comprobante.`);
         const mensajeFlotante = encodeURIComponent(`¡Hola! Deseo más información sobre los Wallpapers Pro.`);
         
