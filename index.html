@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>WALLPAPERS PRO</title>
+    <title>WALLPAPERS PRO — Colección Exclusiva 4K</title>
     <!-- Google Fonts Outfit -->
     <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;600;700;800;900&display=swap" rel="stylesheet">
     <!-- Font Awesome (Íconos) -->
@@ -410,7 +410,7 @@
             box-shadow: 0 5px 20px rgba(37, 211, 102, 0.6);
         }
 
-        /* FAQ Profesional */
+        /* FAQ Profesional Interactivo (Acordeón) */
         .faq-section {
             max-width: 750px;
             margin: 0 auto 90px;
@@ -450,14 +450,34 @@
             justify-content: space-between;
             align-items: center;
             color: #ffffff;
+            user-select: none;
+        }
+
+        .faq-question span {
+            transition: transform 0.3s ease;
+            font-size: 0.8rem;
+            color: var(--accent);
+        }
+
+        /* Estado Abierto de la Pregunta */
+        .faq-item.active .faq-question span {
+            transform: rotate(180deg);
         }
 
         .faq-answer {
-            padding: 0 22px 18px;
+            max-height: 0;
+            overflow: hidden;
+            padding: 0 22px;
             font-size: 0.92rem;
             color: #c0cbdc;
             line-height: 1.6;
             font-weight: 400;
+            transition: max-height 0.35s cubic-bezier(0.4, 0, 0.2, 1), padding 0.35s ease;
+        }
+
+        .faq-item.active .faq-answer {
+            max-height: 300px; /* Altura suficiente para el contenido */
+            padding: 0 22px 18px;
         }
 
         /* NUEVO FOOTER MULTI-COLUMNA */
@@ -672,7 +692,7 @@
 
     <!-- SPLASH SCREEN (SOLO LOGO + BARRA DE CARGA) -->
     <div id="splashScreen">
-        <img src="logo.png" alt="Logo Splash" class="splash-logo">
+        <img src="assets/logo.png" alt="Logo Splash" class="splash-logo">
         <div class="loader-bar">
             <div class="loader-progress"></div>
         </div>
@@ -715,7 +735,7 @@
             </div>
 
             <div class="qr-wrapper">
-                <img src="qr-yape.png" alt="QR Yape">
+                <img src="assets/qr-yape.png" alt="QR Yape">
             </div>
 
             <div class="instructions">
@@ -731,13 +751,15 @@
         </div>
     </section>
 
-    <!-- FAQ Profesional -->
+    <!-- FAQ Profesional Interactivo -->
     <section class="faq-section">
         <div class="faq-title">Preguntas Frecuentes</div>
+        
         <div class="faq-item">
             <div class="faq-question">¿Funcionan en Android y iPhone? <span>▼</span></div>
             <div class="faq-answer">Sí, los videos se descargan en formato MP4 estándar compatible con cualquier aplicación nativa o app de terceros para poner fondos animados en la pantalla de bloqueo o inicio.</div>
         </div>
+
         <div class="faq-item">
             <div class="faq-question">¿Cómo pongo el fondo de pantalla en mi celular? <span>▼</span></div>
             <div class="faq-answer">
@@ -745,6 +767,7 @@
                 <strong>En iPhone:</strong> Convierte el video MP4 a formato Live Photo (puedes usar apps gratuitas como "IntoLive") y luego selecciónalo desde Configuración > Fondo de pantalla > Agregar nuevo fondo como Live Photo.
             </div>
         </div>
+
         <div class="faq-item">
             <div class="faq-question">¿Cuánto pesan los archivos de la carpeta? <span>▼</span></div>
             <div class="faq-answer">Están ultra optimizados para pesar menos de 1 MB cada uno, garantizando fluidez absoluta sin agotar tu batería ni consumir espacio innecesario.</div>
@@ -810,12 +833,29 @@
             }, 1200);
         });
 
+        // INTERACTIVIDAD FAQ (ACORDEÓN)
+        document.querySelectorAll('.faq-question').forEach(question => {
+            question.addEventListener('click', () => {
+                const item = question.parentElement;
+                
+                // Opcional: Cerrar los demás al abrir uno nuevo
+                document.querySelectorAll('.faq-item').forEach(otherItem => {
+                    if (otherItem !== item) {
+                        otherItem.classList.remove('active');
+                    }
+                });
+
+                // Alternar estado actual
+                item.classList.toggle('active');
+            });
+        });
+
         // CONFIGURACIÓN DE LOS FONDOS Y PAGINACIÓN (6 por página)
-        const totalFondos = 45; // Cambia este número al total de fondos que tengas en tu carpeta assets
+        const totalFondos = 33; // Cambia este número al total de fondos que tengas en tu carpeta assets
         const porPagina = 6;    // 6 elementos exactos por página
         let paginaActual = 1;
 
-        const numeroYape = "51907546093"; // Actualizado con tu número de contacto
+        const numeroYape = "51907546093"; // Número de contacto
 
         // Genera el array completo de fondos automáticamente
         const todosLosFondos = Array.from({ length: totalFondos }, (_, i) => ({
