@@ -127,10 +127,9 @@
         }
 
         .logo-img {
-            width: 170px; /* Logo aumentado considerablemente */
+            width: 170px;
             height: 170px;
             object-fit: contain;
-            /* Alto brillo y destello de neón combinado (dorado y cian) */
             filter: drop-shadow(0 0 25px rgba(255, 204, 0, 0.7)) drop-shadow(0 0 10px rgba(0, 255, 204, 0.5));
             animation: floatLogo 4s ease-in-out infinite;
         }
@@ -461,104 +460,211 @@
             font-weight: 400;
         }
 
-        /* Footer Moderno con Logo y Accesos Directos */
+        /* NUEVO FOOTER MULTI-COLUMNA */
         footer {
             background: #020204;
             border-top: 1px solid var(--border-card);
-            padding: 40px 20px;
-            text-align: center;
+            padding: 60px 20px 30px;
             margin-top: auto;
         }
 
-        .footer-content {
-            max-width: 800px;
+        .footer-container {
+            max-width: 1200px;
             margin: 0 auto;
+            display: grid;
+            grid-template-columns: 1.4fr 1fr 1.2fr;
+            gap: 40px;
+            padding-bottom: 40px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+        }
+
+        .footer-col {
             display: flex;
             flex-direction: column;
+            gap: 18px;
+        }
+
+        .footer-brand-header {
+            display: flex;
             align-items: center;
-            gap: 20px;
+            gap: 12px;
         }
 
         .footer-logo {
-            width: 50px;
-            height: 50px;
+            width: 45px;
+            height: 45px;
             object-fit: contain;
-            filter: drop-shadow(0 0 12px rgba(255, 204, 0, 0.6));
+            filter: drop-shadow(0 0 10px rgba(255, 204, 0, 0.6));
         }
 
-        .footer-brand {
+        .footer-brand-name {
             font-weight: 900;
-            font-size: 1.2rem;
+            font-size: 1.3rem;
             letter-spacing: 1px;
             background: linear-gradient(135deg, #fff 40%, var(--accent) 100%);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
         }
 
-        /* Red de Íconos / Navegación Footer */
-        .footer-nav {
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: center;
-            gap: 15px;
-            margin: 10px 0;
-            width: 100%;
+        .footer-col p {
+            color: var(--text-muted);
+            font-size: 0.92rem;
+            line-height: 1.6;
+            font-weight: 400;
         }
 
-        .footer-nav-item {
+        .footer-col h3 {
+            color: var(--accent);
+            font-size: 1.1rem;
+            font-weight: 800;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            position: relative;
+            padding-bottom: 8px;
+        }
+
+        .footer-col h3::after {
+            content: '';
+            position: absolute;
+            left: 0;
+            bottom: 0;
+            width: 35px;
+            height: 2px;
+            background: var(--accent);
+        }
+
+        .footer-links-list {
+            list-style: none;
             display: flex;
             flex-direction: column;
-            align-items: center;
-            gap: 8px;
-            text-decoration: none;
+            gap: 12px;
+        }
+
+        .footer-links-list a {
             color: var(--text-muted);
-            background: rgba(255, 255, 255, 0.03);
-            border: 1px solid rgba(0, 255, 204, 0.15);
-            padding: 12px 18px;
-            border-radius: 14px;
-            transition: all 0.3s ease;
-            min-width: 100px;
+            text-decoration: none;
+            font-size: 0.92rem;
+            transition: color 0.2s, transform 0.2s;
+            display: inline-block;
         }
 
-        .footer-nav-item i {
-            font-size: 1.4rem;
+        .footer-links-list a:hover {
             color: var(--accent);
-            transition: transform 0.3s ease, color 0.3s ease;
+            transform: translateX(4px);
         }
 
-        .footer-nav-item span {
-            font-size: 0.75rem;
-            font-weight: 800;
-            letter-spacing: 1px;
-            text-transform: uppercase;
+        .footer-contact-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 12px;
+            color: var(--text-muted);
+            font-size: 0.92rem;
+            line-height: 1.5;
         }
 
-        .footer-nav-item:hover {
+        .footer-contact-item i {
+            color: var(--accent);
+            font-size: 1.1rem;
+            margin-top: 3px;
+        }
+
+        .footer-social-icons {
+            display: flex;
+            gap: 12px;
+            margin-top: 5px;
+        }
+
+        .footer-social-btn {
+            width: 40px;
+            height: 40px;
+            border-radius: 12px;
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid rgba(0, 255, 204, 0.2);
+            color: var(--accent);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-decoration: none;
+            transition: all 0.3s;
+        }
+
+        .footer-social-btn:hover {
             background: var(--bg-card-hover);
             border-color: var(--accent);
-            color: #ffffff;
-            transform: translateY(-4px);
-            box-shadow: 0 6px 20px var(--glow-cyan);
-        }
-
-        .footer-nav-item:hover i {
-            transform: scale(1.15);
             color: var(--accent-gold);
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px var(--glow-cyan);
         }
 
-        .footer-copy {
+        .footer-bottom {
+            max-width: 1200px;
+            margin: 25px auto 0;
+            text-align: center;
             font-size: 0.85rem;
             color: #94a3b8;
             font-weight: 500;
         }
 
+        /* BOTÓN FLOTANTE DE WHATSAPP */
+        .whatsapp-float {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            background: linear-gradient(135deg, #25D366, #1ebe5d);
+            color: #ffffff;
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 32px;
+            box-shadow: 0 8px 25px rgba(37, 211, 102, 0.5);
+            z-index: 999;
+            text-decoration: none;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            animation: pulseWa 2s infinite;
+        }
+
+        .whatsapp-float:hover {
+            transform: scale(1.1);
+            box-shadow: 0 12px 35px rgba(37, 211, 102, 0.8);
+        }
+
+        @keyframes pulseWa {
+            0% { box-shadow: 0 0 0 0 rgba(37, 211, 102, 0.7); }
+            70% { box-shadow: 0 0 0 15px rgba(37, 211, 102, 0); }
+            100% { box-shadow: 0 0 0 0 rgba(37, 211, 102, 0); }
+        }
+
+        @media (max-width: 850px) {
+            .footer-container {
+                grid-template-columns: 1fr;
+                gap: 30px;
+                text-align: center;
+            }
+            .footer-brand-header {
+                justify-content: center;
+            }
+            .footer-col h3::after {
+                left: 50%;
+                transform: translateX(-50%);
+            }
+            .footer-contact-item {
+                justify-content: center;
+            }
+            .footer-social-icons {
+                justify-content: center;
+            }
+            .footer-links-list a:hover {
+                transform: translateX(0) scale(1.05);
+            }
+        }
+
         @media (max-width: 480px) {
             .grid { padding: 15px 3% 20px; gap: 14px; }
             .checkout-box { padding: 35px 20px; }
-            .footer-nav { gap: 10px; }
-            .footer-nav-item { min-width: 80px; padding: 10px; }
-            .footer-nav-item i { font-size: 1.2rem; }
-            .footer-nav-item span { font-size: 0.68rem; }
+            .whatsapp-float { bottom: 20px; right: 20px; width: 52px; height: 52px; font-size: 28px; }
         }
     </style>
 </head>
@@ -572,9 +678,14 @@
         </div>
     </div>
 
+    <!-- BOTÓN WHATSAPP FLOTANTE -->
+    <a href="#" id="whatsappFloatLink" class="whatsapp-float" target="_blank" title="Escríbenos por WhatsApp">
+        <i class="fa-brands fa-whatsapp"></i>
+    </a>
+
     <header>
         <div class="brand-container">
-            <!-- Logo grande con gran brillo neón (Aumentado) -->
+            <!-- Logo grande con gran brillo neón -->
             <img src="assets/logo.png" alt="Logo WALLPAPERS PRO" class="logo-img">
             <span class="badge">🔥 Colección Exclusiva 2026</span>
         </div>
@@ -640,33 +751,53 @@
         </div>
     </section>
 
-    <!-- Footer Moderno con Logo y Secciones Adicionales -->
+    <!-- Footer Estilo Multi-Columna -->
     <footer>
-        <div class="footer-content">
-            <img src="assets/logo.png" alt="Logo Footer" class="footer-logo">
-            <div class="footer-brand">WALLPAPERS PRO®</div>
-            
-            <!-- Navegación con Íconos -->
-            <nav class="footer-nav">
-                <a href="https://newcosmo-peru.github.io/MANUALES/" target="_blank" class="footer-nav-item">
-                    <i class="fa-solid fa-book-open"></i>
-                    <span>Manuales</span>
-                </a>
-                <a href="https://newcosmo-peru.github.io/SOLUCIONES/" target="_blank" class="footer-nav-item">
-                    <i class="fa-solid fa-wand-magic-sparkles"></i>
-                    <span>Soluciones</span>
-                </a>
-                <a href="https://newcosmo-peru.github.io/STORE/" target="_blank" class="footer-nav-item">
-                    <i class="fa-solid fa-bag-shopping"></i>
-                    <span>Store</span>
-                </a>
-                <a href="https://newcosmo-peru.github.io/TONOS/" target="_blank" class="footer-nav-item">
-                    <i class="fa-solid fa-music"></i>
-                    <span>Tonos</span>
-                </a>
-            </nav>
+        <div class="footer-container">
+            <!-- Columna 1: Marca e información -->
+            <div class="footer-col">
+                <div class="footer-brand-header">
+                    <img src="assets/logo.png" alt="Logo Footer" class="footer-logo">
+                    <span class="footer-brand-name">WALLPAPERS PRO</span>
+                </div>
+                <p>Plataforma líder en contenidos visuales y personalización móvil de alta gama. Adquiere experiencias estéticas orientadas a destacar al máximo tu dispositivo.</p>
+                <div class="footer-social-icons">
+                    <a href="https://newcosmo-peru.github.io/MANUALES/" target="_blank" class="footer-social-btn" title="Manuales"><i class="fa-solid fa-book-open"></i></a>
+                    <a href="https://newcosmo-peru.github.io/STORE/" target="_blank" class="footer-social-btn" title="Store"><i class="fa-solid fa-bag-shopping"></i></a>
+                    <a href="https://newcosmo-peru.github.io/TONOS/" target="_blank" class="footer-social-btn" title="Tonos"><i class="fa-solid fa-music"></i></a>
+                    <a href="https://newcosmo-peru.github.io/SOLUCIONES/" target="_blank" class="footer-social-btn" title="Soluciones"><i class="fa-solid fa-wand-magic-sparkles"></i></a>
+                </div>
+            </div>
 
-            <div class="footer-copy">Todos los derechos reservados. Diseñado para ofrecer la mejor experiencia visual en móviles.</div>
+            <!-- Columna 2: Accesos Rápidos -->
+            <div class="footer-col">
+                <h3>Accesos Rápidos</h3>
+                <ul class="footer-links-list">
+                    <li><a href="#">Catálogo Completo</a></li>
+                    <li><a href="#">Preguntas Frecuentes</a></li>
+                    <li><a href="#">Pack Completo VIP</a></li>
+                </ul>
+            </div>
+
+            <!-- Columna 3: Contáctanos -->
+            <div class="footer-col">
+                <h3>Contáctanos</h3>
+                <div class="footer-contact-item">
+                    <i class="fa-solid fa-location-dot"></i>
+                    <span>Trujillo, La Libertad<br>Perú</span>
+                </div>
+                <div class="footer-contact-item">
+                    <i class="fa-solid fa-phone"></i>
+                    <span>+51 907 546 093</span>
+                </div>
+                <div class="footer-contact-item">
+                    <i class="fa-solid fa-envelope"></i>
+                    <span>www.newcosmo@outlook.es</span>
+                </div>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            Todos los derechos reservados © 2026. Diseñado para ofrecer la mejor experiencia visual en móviles.
         </div>
     </footer>
 
@@ -680,11 +811,11 @@
         });
 
         // CONFIGURACIÓN DE LOS FONDOS Y PAGINACIÓN (6 por página)
-        const totalFondos = 45; // Cambia este número al total de fondos que tengas en tu carpeta assets
+        const totalFondos = 33; // Cambia este número al total de fondos que tengas en tu carpeta assets
         const porPagina = 6;    // 6 elementos exactos por página
         let paginaActual = 1;
 
-        const numeroYape = "51999999999"; // Cambia por tu número real con código de país
+        const numeroYape = "51907546093"; // Actualizado con tu número de contacto
 
         // Genera el array completo de fondos automáticamente
         const todosLosFondos = Array.from({ length: totalFondos }, (_, i) => ({
@@ -752,10 +883,12 @@
         // Inicializar la primera página al cargar
         renderizarPagina();
 
-        // Enlace automático de WhatsApp
-        const waLink = document.getElementById('whatsappLink');
+        // Enlaces automáticos de WhatsApp (Checkout y botón flotante)
         const mensaje = encodeURIComponent(`Hola, acabo de realizar el pago único de S/ 10.00 por la colección completa de wallpapers. Te comparto mi comprobante.`);
-        waLink.href = `https://wa.me/${numeroYape}?text=${mensaje}`;
+        const mensajeFlotante = encodeURIComponent(`¡Hola! Deseo más información sobre los Wallpapers Pro.`);
+        
+        document.getElementById('whatsappLink').href = `https://wa.me/${numeroYape}?text=${mensaje}`;
+        document.getElementById('whatsappFloatLink').href = `https://wa.me/${numeroYape}?text=${mensajeFlotante}`;
     </script>
 </body>
 </html>
