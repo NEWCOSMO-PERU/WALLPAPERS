@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>WALLPAPERS PRO — Colección Exclusiva 4K</title>
+    <title>WALLPAPERS PRO</title>
     <!-- Google Fonts Outfit -->
     <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;600;700;800;900&display=swap" rel="stylesheet">
     <!-- Font Awesome (Íconos) -->
@@ -127,8 +127,8 @@
         }
 
         .logo-img {
-            width: 130px; /* Logo más grande */
-            height: 130px;
+            width: 170px; /* Logo aumentado considerablemente */
+            height: 170px;
             object-fit: contain;
             /* Alto brillo y destello de neón combinado (dorado y cian) */
             filter: drop-shadow(0 0 25px rgba(255, 204, 0, 0.7)) drop-shadow(0 0 10px rgba(0, 255, 204, 0.5));
@@ -574,7 +574,7 @@
 
     <header>
         <div class="brand-container">
-            <!-- Logo grande con gran brillo neón -->
+            <!-- Logo grande con gran brillo neón (Aumentado) -->
             <img src="assets/logo.png" alt="Logo WALLPAPERS PRO" class="logo-img">
             <span class="badge">🔥 Colección Exclusiva 2026</span>
         </div>
@@ -604,7 +604,7 @@
             </div>
 
             <div class="qr-wrapper">
-                <img src="assets/tu_qr_yape.png" alt="QR Yape">
+                <img src="assets/qr-yape.png" alt="QR Yape">
             </div>
 
             <div class="instructions">
@@ -615,7 +615,7 @@
             </div>
             
             <a href="#" id="whatsappLink" class="btn-wa" target="_blank">
-                📱 Enviar Comprobante y Descargar
+                📱 ACCESO VIP
             </a>
         </div>
     </section>
@@ -626,6 +626,13 @@
         <div class="faq-item">
             <div class="faq-question">¿Funcionan en Android y iPhone? <span>▼</span></div>
             <div class="faq-answer">Sí, los videos se descargan en formato MP4 estándar compatible con cualquier aplicación nativa o app de terceros para poner fondos animados en la pantalla de bloqueo o inicio.</div>
+        </div>
+        <div class="faq-item">
+            <div class="faq-question">¿Cómo pongo el fondo de pantalla en mi celular? <span>▼</span></div>
+            <div class="faq-answer">
+                <strong>En Android:</strong> Puedes usar aplicaciones gratuitas de la Play Store como "Video Live Wallpaper" o establecerlo directamente desde tu galería si tu capa de personalización lo permite.<br><br>
+                <strong>En iPhone:</strong> Convierte el video MP4 a formato Live Photo (puedes usar apps gratuitas como "IntoLive") y luego selecciónalo desde Configuración > Fondo de pantalla > Agregar nuevo fondo como Live Photo.
+            </div>
         </div>
         <div class="faq-item">
             <div class="faq-question">¿Cuánto pesan los archivos de la carpeta? <span>▼</span></div>
@@ -673,7 +680,7 @@
         });
 
         // CONFIGURACIÓN DE LOS FONDOS Y PAGINACIÓN (6 por página)
-        const totalFondos = 33; // Cambia este número al total de fondos que tengas en tu carpeta assets
+        const totalFondos = 45; // Cambia este número al total de fondos que tengas en tu carpeta assets
         const porPagina = 6;    // 6 elementos exactos por página
         let paginaActual = 1;
 
